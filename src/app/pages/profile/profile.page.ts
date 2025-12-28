@@ -39,11 +39,11 @@ export class ProfilePage implements OnInit {
       if (user) {
         this.userID = user?.uid;
         this.email = user?.email;
-        this.kycCompleted = user?.kycCompleted || false;
         this.firestore.collection('users').doc(user?.uid).get().subscribe(doc => {
-          const data = doc.data() as { displayName?: string } | undefined;
+          const data = doc.data() as { displayName?: string, kycCompleted?: boolean } | undefined;
 
           this.username = data?.displayName;
+          this.kycCompleted = data?.kycCompleted || false;
 
 
         });
