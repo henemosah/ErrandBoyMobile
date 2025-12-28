@@ -1,0 +1,104 @@
+<!--
+  Authors : initappz (Rahul Jograna)
+  Website : https://initappz.com/
+  App Name : Foodies-3 FoodDon This App Template Source code is licensed as per the
+  terms found in the Website https://initappz.com/license
+  Copyright and Good Faith Purchasers © 2023-present initappz.
+-->
+<ion-app>
+  <ion-split-pane contentId="main-content">
+    <ion-menu contentId="main-content" type="overlay">
+      <ion-header>
+        <ion-toolbar color="primary">
+          <ion-item class="sidemenu-item" lines="none" color="primary">
+            <ion-thumbnail slot="start">
+              <img src="assets/images/avatar/2.jpg" />
+            </ion-thumbnail>
+            <ion-label class="lbl">
+              <p class="title">{{ username }}</p>
+              <p class="sub-title">{{ email }}</p>
+            </ion-label>
+          </ion-item>
+        </ion-toolbar>
+      </ion-header>
+      <ion-content>
+        <ion-list id="inbox-list">
+
+          <ion-menu-toggle auto-hide="false" (click)="onPage('home')">
+            <ion-card mode="ios" class="sidemenu-card-content">
+              <ion-item lines="none">
+                <ion-icon slot="start" name="bicycle-outline" color="primary"></ion-icon>
+                <ion-label>Home</ion-label>
+              </ion-item>
+            </ion-card>
+          </ion-menu-toggle>
+
+          <ion-menu-toggle auto-hide="false" (click)="onPage('profile')">
+            <ion-card mode="ios" class="sidemenu-card-content">
+              <ion-item lines="none">
+                <ion-icon slot="start" name="person-circle" color="primary"></ion-icon>
+                <ion-label>Profile</ion-label>
+              </ion-item>
+            </ion-card>
+          </ion-menu-toggle>
+
+          <ion-menu-toggle auto-hide="false" (click)="onSubPage('orders')">
+            <ion-card mode="ios" class="sidemenu-card-content">
+              <ion-item lines="none">
+                <ion-icon slot="start" name="bag-handle" color="primary"></ion-icon>
+                <ion-label>Order History</ion-label>
+              </ion-item>
+            </ion-card>
+          </ion-menu-toggle>
+
+          <ion-menu-toggle auto-hide="false" (click)="onPage('menu')">
+            <ion-card mode="ios" class="sidemenu-card-content">
+              <ion-item lines="none">
+                <ion-icon slot="start" name="grid" color="primary"></ion-icon>
+                <ion-label>Notifications</ion-label>
+              </ion-item>
+            </ion-card>
+          </ion-menu-toggle>
+
+          <ion-menu-toggle auto-hide="false" (click)="onSubPage('my-address')">
+            <ion-card mode="ios" class="sidemenu-card-content">
+              <ion-item lines="none">
+                <ion-icon slot="start" name="compass" color="primary"></ion-icon>
+                <ion-label>My Addresses</ion-label>
+              </ion-item>
+            </ion-card>
+          </ion-menu-toggle>
+
+          <ion-menu-toggle auto-hide="false" (click)="onSubPage('help')">
+            <ion-card mode="ios" class="sidemenu-card-content">
+              <ion-item lines="none">
+                <ion-icon slot="start" name="heart" color="primary"></ion-icon>
+                <ion-label>Privacy</ion-label>
+              </ion-item>
+            </ion-card>
+          </ion-menu-toggle>
+
+          <ion-menu-toggle auto-hide="false" (click)="onSubPage('help')">
+            <ion-card mode="ios" class="sidemenu-card-content">
+              <ion-item lines="none">
+                <ion-icon slot="start" name="help-circle" color="primary"></ion-icon>
+                <ion-label>Terms & Conditions</ion-label>
+              </ion-item>
+            </ion-card>
+          </ion-menu-toggle>
+
+          <ion-menu-toggle auto-hide="false" (click)="logout()">
+            <ion-card mode="ios" class="sidemenu-card-content">
+              <ion-item lines="none">
+                <ion-icon slot="start" name="help-circle" color="primary"></ion-icon>
+                <ion-label>Logout</ion-label>
+              </ion-item>
+            </ion-card>
+          </ion-menu-toggle>
+
+        </ion-list>
+      </ion-content>
+    </ion-menu>
+    <ion-router-outlet id="main-content"></ion-router-outlet>
+  </ion-split-pane>
+</ion-app>

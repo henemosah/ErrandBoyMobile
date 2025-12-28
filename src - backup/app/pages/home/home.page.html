@@ -1,0 +1,152 @@
+<!--
+  Authors : initappz (Rahul Jograna)
+  Website : https://initappz.com/
+  App Name : Foodies-3 FoodDon This App Template Source code is licensed as per the
+  terms found in the Website https://initappz.com/license
+  Copyright and Good Faith Purchasers © 2023-present initappz.
+-->
+<ion-header class="ion-no-border">
+  <ion-toolbar mode="md" color="primary">
+    <ion-buttons slot="start">
+      <ion-button color="light" (click)="util.openSideMenu()">
+        <ion-icon slot="icon-only" name="menu"></ion-icon>
+      </ion-button>
+    </ion-buttons>
+    <ion-buttons slot="end">
+      <ion-avatar slot="end">
+        <img src="assets/images/avatar.jpg" />
+      </ion-avatar>
+    </ion-buttons>
+  </ion-toolbar>
+  <ion-toolbar mode="md" color="primary">
+    <ion-title>
+      <ion-label class="title-bold-toolbar">Hello {{ username }}</ion-label>
+      <ion-label class="title-regular-toolbar">What errand would you like today?</ion-label>
+    </ion-title>
+  </ion-toolbar>
+  <!-- <ion-toolbar mode="md">
+    <ion-item class="search-content-toolbar" lines="none">
+      <ion-icon slot="start" name="search-outline" color="medium" (click)="openSearchModal()"></ion-icon>
+      <ion-label class="lbl" (click)="openSearchModal()">Search Providers</ion-label>
+      <ion-icon slot="end" name="options-outline" (click)="presentModal()"></ion-icon>
+    </ion-item>
+  </ion-toolbar> -->
+</ion-header>
+
+<ion-content class="ion-padding">
+  <div class="home-screen">
+
+    <div class="main-title">
+      <ion-label class="title">My Orders</ion-label>
+    </div>
+
+    <ion-list>
+      <ion-item *ngIf="pendingDeliveries?.length==0">
+        <ion-label>No Errands pending delivery</ion-label>
+        <hr style="background-color: blue; margin-bottom: 10px;"/>
+      </ion-item>
+      <ion-item *ngFor="let delivery of pendingDeliveries">
+        <!-- <ion-icon name="cube-outline" slot="start"></ion-icon> -->
+        <img [src]="getRandomIconImage()" style="height: 52px; margin-right: 10px;" />
+        <ion-label>
+          #{{delivery.delivery_no || 'DEL-XXXXX-YYYYYYY' }}<br/><br/>
+          Address: {{ delivery.dropoff }}<br>
+          Description: {{ delivery.description }}<br>
+          <b [style]="{'color': calculateFee(delivery)==5000?'red':'black'}">Fee: ₦ {{ calculateFee(delivery) | number }}</b><br/>
+          Request Date: {{delivery.timestamp.seconds*1000 | date: 'dd/MM/yyyy'}}
+          <br/><br/>
+        </ion-label>
+        <ion-button (click)="errandDetails(delivery)">Chat ...</ion-button>
+      </ion-item>
+    </ion-list>
+
+    <swiper-container slides-per-view="1" speed="500" loop="false" css-mode="true" space-between="10" style="margin-top: 10px;">
+      <swiper-slide *ngFor="let item of util.banners;">
+        <div class="slider-screen" [ngStyle]="{'background-image': 'url('+item+')'}" (click)="byCategories('Offers')">
+        </div>
+      </swiper-slide>
+    </swiper-container>
+
+    <div class="main-title">
+      <ion-label class="title">Available Actions</ion-label>
+      <ion-label class="btn" (click)="onCategories()">See All</ion-label>
+    </div>
+    <div>
+      <!-- <button (click)="requestDelivery()">Request Delivery</button><br/>
+  <button (click)="availableDeliveries()">Available Deliveries</button><br/> -->
+
+      <ion-button expand="block" fill="solid" color="primary" (click)="requestDelivery()">Request an Errand
+      </ion-button>
+      <!-- <ion-button expand="block" fill="solid" color="primary" (click)="availableDeliveries()">Available Deliveries
+      </ion-button> -->
+    </div>
+    <!-- <div>
+      <div>
+        <video id="localVideo" autoplay muted playsinline></video>
+        <video id="remoteVideo" autoplay playsinline></video>
+      </div>
+      <ion-button (click)="startCall()">Start Call</ion-button>
+    </div> -->
+    <swiper-container slides-per-view="4" speed="500" loop="false" css-mode="true" space-between="15">
+      <swiper-slide *ngFor="let item of util.categories;">
+        <div class="cate-info" (click)="byCategories(item.name)">
+          <div class="circle">
+            <img [src]="item.image" alt="" class="img">
+          </div>
+          <ion-label class="name">{{item.name}}</ion-label>
+        </div>
+      </swiper-slide>
+    </swiper-container>
+
+    <div class="main-title">
+      <ion-label class="title">Pending Errands</ion-label>
+    </div>
+
+    <ion-list>
+      <ion-item *ngFor="let delivery of deliveries">
+        <!-- <ion-icon name="cube-outline" slot="start"></ion-icon> -->
+        <img [src]="getRandomIconImage()" style="height: 52px; margin-right: 10px;" />
+        <ion-label>
+          #{{delivery.delivery_no || 'DEL-XXXXX-YYYYYYY'}}<br/><br/>
+          Address: {{ delivery.dropoff }}<br>
+          Description: {{ delivery.description }}<br>
+          <span [style]="{'color': 'red !important'}"><b>Fee: ₦ {{ calculateFee(delivery) | number }}</b></span><br/>
+        </ion-label>
+        <ion-button (click)="cancelErrand(delivery)">Cancel</ion-button>
+      </ion-item>
+    </ion-list>
+    
+    <!-- <div class="main-title">
+      <ion-label class="title">Top Services</ion-label>
+      <ion-label class="btn" (click)="byCategories('Hot Sale')">See All</ion-label>
+    </div>
+
+    <ion-row class="ion-no-padding food-list">
+      <ion-col size="6" *ngFor="let item of foods;let i = index;" (click)="onFoodInfo(item.name,item.image)">
+        <div class="food-info">
+          <div class="cover"
+            [ngStyle]="{'background-image': 'url('+ item.category_image +')', 'margin':'20px !important'}"></div>
+          <div class="name-info">
+            <ion-label class="name">{{item.service}}</ion-label>
+            <div class="end">
+              <ion-icon name="star" color="primary"></ion-icon>
+              <ion-label class="lbl">{{item.rate}}</ion-label>
+            </div>
+          </div>
+          <div class="name-info">
+            <ion-label class="price">NGN{{item.total_rate}}</ion-label>
+            <div class="end">
+              <ion-label class="lbl">{{item.name}} </ion-label>
+            </div>
+          </div>
+        </div>
+      </ion-col>
+    </ion-row> -->
+  </div>
+</ion-content>
+
+<ion-footer>
+  <ion-toolbar>
+    <app-tabs [navigation]="'home'"></app-tabs>
+  </ion-toolbar>
+</ion-footer>

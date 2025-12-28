@@ -1,0 +1,55 @@
+<!--
+  Authors : initappz (Rahul Jograna)
+  Website : https://initappz.com/
+  App Name : Foodies-3 FoodDon This App Template Source code is licensed as per the
+  terms found in the Website https://initappz.com/license
+  Copyright and Good Faith Purchasers © 2023-present initappz.
+-->
+<ion-header class="ion-no-border">
+  <ion-toolbar mode="md" color="primary">
+    <ion-buttons slot="start">
+      <ion-button (click)="onBack()" color="light">
+        <ion-icon slot="icon-only" name="chevron-back-outline"></ion-icon>
+      </ion-button>
+    </ion-buttons>
+    <ion-title>Edit Profile</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content class="ion-padding">
+  <div class="edit-profil-screen">
+    <ion-card mode="ios" class="card-content">
+      <div class="cover-image">
+        <img src="assets/images/avatar/2.jpg" alt="" class="img">
+      </div>
+      <ion-item lines="none" class="item-input">
+        <ion-label class="lbl" position="stacked">Your Name <ion-text color="danger"> {{ username }}</ion-text></ion-label>
+        <ion-input></ion-input>
+      </ion-item>
+
+      <ion-item lines="none" class="item-input">
+        <ion-label class="lbl" position="stacked">Email Address <ion-text color="danger">{{ email }}</ion-text></ion-label>
+        <ion-input></ion-input>
+      </ion-item>
+
+      <ion-item lines="none" class="item-input">
+        <ion-label class="lbl" position="stacked">Mobile Number <ion-text color="danger">{{ phoneNumber }}</ion-text></ion-label>
+        <ion-input></ion-input>
+      </ion-item>
+
+      <ion-item lines="none" class="item-input">
+        <ion-label class="lbl" position="stacked">Change Password <ion-text color="danger">*</ion-text></ion-label>
+        <ion-input></ion-input>
+      </ion-item>
+
+      <ion-item lines="none" class="item-input">
+        <ion-label class="lbl" position="stacked">Confirm Password <ion-text color="danger">*</ion-text></ion-label>
+        <ion-input></ion-input>
+      </ion-item>
+    </ion-card>
+
+    <ion-button expand="block" fill="solid" shape="round" color="primary">
+      Save Changes
+    </ion-button>
+  </div>
+</ion-content>

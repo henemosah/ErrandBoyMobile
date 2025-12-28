@@ -1,0 +1,74 @@
+
+<ion-header class="ion-no-border">
+  <ion-toolbar mode="md" color="primary">
+    <ion-buttons slot="start">
+      <ion-button color="light" (click)="util.openSideMenu()">
+        <ion-icon slot="icon-only" name="menu"></ion-icon>
+      </ion-button>
+    </ion-buttons>
+    <ion-title>
+      <ion-label class="title-bold-toolbar">Available Errands</ion-label>
+      <ion-label class="title-regular-toolbar">List of Deliveries</ion-label>
+    </ion-title>
+    <ion-buttons slot="end">
+      <ion-avatar slot="end">
+        <img src="assets/images/avatar.jpg" />
+      </ion-avatar>
+    </ion-buttons>
+  </ion-toolbar>
+</ion-header>
+<ion-content class="ion-padding">
+  <div class="home-screen">
+
+    <div class="main-title">
+      <ion-label class="title">My Errands</ion-label>
+    </div>
+  <div style="text-align: center;;">
+    
+    <img src="assets/images/my_errands.jpg" style="width: 95%;" />
+  </div>
+    <ion-list>
+      <ion-item *ngIf="pendingDeliveries?.length==0">
+        <ion-label>No Errands pending delivery</ion-label>
+        <hr style="background-color: blue; margin-bottom: 10px;"/>
+      </ion-item>
+      <ion-item *ngFor="let delivery of pendingDeliveries">
+        <!-- <ion-icon name="cube-outline" slot="start"></ion-icon> -->
+        <img [src]="getRandomIconImage()" style="height: 52px; margin-right: 10px;" />
+        <ion-label>
+          #{{delivery.delivery_no || 'DEL-XXXXX-YYYYYYY'}}<br/>
+          Address: {{ delivery.dropoff }}<br>
+          Description: {{ delivery.description }}<br>
+          <b>Fee: ₦ {{ calculateFee(delivery) | number }}</b><br/>
+          Request Date: {{delivery.timestamp.seconds*1000 | date: 'dd/MM/yyyy'}}
+          <br/><br/>
+        </ion-label>
+        <ion-button (click)="errandDetails(delivery)">Chat ...</ion-button>
+      </ion-item>
+    </ion-list>
+    <div class="main-title">
+      <ion-label class="title">Accept an Errand Request</ion-label>
+    </div>
+  
+    <ion-list>
+      <ion-item *ngFor="let delivery of deliveries">
+        <!-- <ion-icon name="cube-outline" slot="start"></ion-icon> -->
+        <img [src]="getRandomIconImage()" style="height: 52px; margin-right: 10px;" />
+        <ion-label>        
+          #{{delivery.delivery_no || 'DEL-XXXXX-YYYYYYY'}}<br/>
+          Address: {{ delivery.dropoff }}<br>
+          Description: {{ delivery.description }}<br>
+          <!-- <b>Fee: ₦ {{ calculateFee(delivery) | number }}</b> -->
+          <br/>
+          Request Date: {{delivery.timestamp.seconds*1000 | date: 'dd/MM/yyyy'}}
+        </ion-label>
+        <ion-button (click)="acceptDelivery(delivery)">Accept</ion-button>
+      </ion-item>
+    </ion-list>
+  </div>
+</ion-content>
+<ion-footer>
+  <ion-toolbar>
+    <ion-title>Total Available Deliveries: {{ deliveriesCount }}</ion-title>
+  </ion-toolbar>
+</ion-footer>

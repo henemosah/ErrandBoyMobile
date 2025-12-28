@@ -1,0 +1,124 @@
+<!--
+  Authors : initappz (Rahul Jograna)
+  Website : https://initappz.com/
+  App Name : Foodies-3 FoodDon This App Template Source code is licensed as per the
+  terms found in the Website https://initappz.com/license
+  Copyright and Good Faith Purchasers © 2023-present initappz.
+-->
+<ion-header class="ion-no-border">
+  <ion-toolbar mode="ios">
+    <ion-title>Sort By Filters</ion-title>
+    <ion-buttons slot="end">
+      <ion-button (click)="close()" color="dark">
+        <ion-icon slot="icon-only" name="close-circle-outline"></ion-icon>
+      </ion-button>
+    </ion-buttons>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content class="ion-padding">
+  <div class="filter-screen">
+    <ion-card mode="ios" class="filter-name" (click)="changeFilter('sort')">
+      <ion-label class="lbl">Sory By</ion-label>
+      <ion-icon [name]="selected =='sort' ? 'chevron-up-outline':'chevron-down-outline'"
+        [color]="selected =='sort' ? 'primary':'dark'"></ion-icon>
+    </ion-card>
+    <div class="sort-filter" *ngIf="selected == 'sort'">
+      <ion-radio-group name="auto" value="tesla">
+        <ion-item lines="none" class="item-content">
+          <ion-label class="lbl">Popularity</ion-label>
+          <ion-radio value="tesla" mode="md" color="primary" slot="end"></ion-radio>
+        </ion-item>
+        <ion-item lines="none" class="item-content">
+          <ion-label class="lbl">Price - Low to High</ion-label>
+          <ion-radio value="lh" mode="md" color="primary" slot="end"></ion-radio>
+        </ion-item>
+        <ion-item lines="none" class="item-content">
+          <ion-label class="lbl">Price - High to Low</ion-label>
+          <ion-radio value="hl" mode="md" color="primary" slot="end"></ion-radio>
+        </ion-item>
+        <ion-item lines="none" class="item-content">
+          <ion-label class="lbl">Alphabetical</ion-label>
+          <ion-radio value="alpha" mode="md" color="primary" slot="end"></ion-radio>
+        </ion-item>
+        <ion-item lines="none" class="item-content">
+          <ion-label class="lbl">Off - High to Low</ion-label>
+          <ion-radio value="off" mode="md" color="primary" slot="end"></ion-radio>
+        </ion-item>
+      </ion-radio-group>
+    </div>
+
+    <ion-card mode="ios" class="filter-name" (click)="changeFilter('menu')">
+      <ion-label class="lbl">Menu</ion-label>
+      <ion-icon [name]="selected =='menu' ? 'chevron-up-outline':'chevron-down-outline'"
+        [color]="selected =='menu' ? 'primary':'dark'"></ion-icon>
+    </ion-card>
+    <div class="sort-filter" *ngIf="selected == 'menu'">
+      <ion-chip color="tertiary" mode="md" [outline]="savedCategories.includes(item.name) ? false : true"
+        (click)="saveCategories(item.name)" *ngFor="let item of util.categories">
+        <ion-label>{{item.name}}</ion-label>
+      </ion-chip>
+    </div>
+
+
+    <ion-card mode="ios" class="filter-name" (click)="changeFilter('rate')">
+      <ion-label class="lbl">Rating</ion-label>
+      <ion-icon [name]="selected =='rate' ? 'chevron-up-outline':'chevron-down-outline'"
+        [color]="selected =='rate' ? 'primary':'dark'"></ion-icon>
+    </ion-card>
+    <div class="sort-filter" *ngIf="selected == 'rate'">
+      <ion-radio-group name="auto" value="tesla">
+        <ion-item lines="none" class="item-content">
+          <ion-label class="lbl">4.0 - 5.0</ion-label>
+          <ion-radio value="tesla" mode="md" color="primary" slot="end"></ion-radio>
+        </ion-item>
+        <ion-item lines="none" class="item-content">
+          <ion-label class="lbl">3.5 - 4.5</ion-label>
+          <ion-radio value="lh" mode="md" color="primary" slot="end"></ion-radio>
+        </ion-item>
+        <ion-item lines="none" class="item-content">
+          <ion-label class="lbl">2.5 - 3.5</ion-label>
+          <ion-radio value="hl" mode="md" color="primary" slot="end"></ion-radio>
+        </ion-item>
+        <ion-item lines="none" class="item-content">
+          <ion-label class="lbl">1.5 - 2.5</ion-label>
+          <ion-radio value="alpha" mode="md" color="primary" slot="end"></ion-radio>
+        </ion-item>
+        <ion-item lines="none" class="item-content">
+          <ion-label class="lbl">0.0 - 1.5</ion-label>
+          <ion-radio value="off" mode="md" color="primary" slot="end"></ion-radio>
+        </ion-item>
+      </ion-radio-group>
+    </div>
+
+
+    <ion-card mode="ios" class="filter-name" (click)="changeFilter('price')">
+      <ion-label class="lbl">Price</ion-label>
+      <ion-icon [name]="selected =='price' ? 'chevron-up-outline':'chevron-down-outline'"
+        [color]="selected =='price' ? 'primary':'dark'"></ion-icon>
+    </ion-card>
+    <div class="sort-filter" *ngIf="selected == 'price'">
+      <div class="price-range">
+        <div [ngClass]="priceLbl == '1'?'active':'deactive'" (click)="changeLbl('1')">
+          <ion-label [ngClass]="priceLbl == '1'?'active-lbl':'deactive-lbl'">$</ion-label>
+        </div>
+        <div [ngClass]="priceLbl == '2'?'active':'deactive'" (click)="changeLbl('2')">
+          <ion-label [ngClass]="priceLbl == '2'?'active-lbl':'deactive-lbl'">$$</ion-label>
+        </div>
+        <div [ngClass]="priceLbl == '3'?'active':'deactive'" (click)="changeLbl('3')">
+          <ion-label [ngClass]="priceLbl == '3'?'active-lbl':'deactive-lbl'">$$$</ion-label>
+        </div>
+        <div [ngClass]="priceLbl == '4'?'active':'deactive'" (click)="changeLbl('4')">
+          <ion-label [ngClass]="priceLbl == '4'?'active-lbl':'deactive-lbl'">$$$$</ion-label>
+        </div>
+      </div>
+    </div>
+  </div>
+</ion-content>
+<ion-footer>
+  <ion-toolbar>
+    <ion-button (click)="close()" expand="block" fill="solid" shape="round" color="primary">
+      Apply
+    </ion-button>
+  </ion-toolbar>
+</ion-footer>

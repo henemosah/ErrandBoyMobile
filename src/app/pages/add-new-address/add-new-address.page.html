@@ -1,0 +1,80 @@
+<!--
+  Authors : initappz (Rahul Jograna)
+  Website : https://initappz.com/
+  App Name : Foodies-3 FoodDon This App Template Source code is licensed as per the
+  terms found in the Website https://initappz.com/license
+  Copyright and Good Faith Purchasers © 2023-present initappz.
+-->
+<ion-header class="ion-no-border">
+  <ion-toolbar mode="md" color="primary">
+    <ion-buttons slot="start">
+      <ion-button (click)="onBack()" color="light">
+        <ion-icon slot="icon-only" name="chevron-back-outline"></ion-icon>
+      </ion-button>
+    </ion-buttons>
+    <ion-title>Add New Address</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <ion-card class="add-new-address" mode="ios">
+    <ion-label class="title">Add New Address</ion-label>
+    <ion-item lines="none" class="item-input">
+      <ion-label class="lbl" position="stacked">Your Location <ion-text color="danger">*</ion-text></ion-label>
+      <ion-input placeholder="1007 Heritage Road Fresno"></ion-input>
+    </ion-item>
+    <ion-row class="ion-no-padding">
+      <ion-col size="6">
+        <ion-item lines="none" class="item-input">
+          <ion-label class="lbl" position="stacked">First Name <ion-text color="danger">*</ion-text></ion-label>
+          <ion-input></ion-input>
+        </ion-item>
+      </ion-col>
+      <ion-col size="6">
+        <ion-item lines="none" class="item-input">
+          <ion-label class="lbl" position="stacked">Last Name <ion-text color="danger">*</ion-text></ion-label>
+          <ion-input></ion-input>
+        </ion-item>
+      </ion-col>
+    </ion-row>
+
+    <ion-item lines="none" class="item-input">
+      <ion-label class="lbl" position="stacked">Email Address <ion-text color="danger">*</ion-text></ion-label>
+      <ion-input></ion-input>
+    </ion-item>
+
+    <ion-item lines="none" class="item-input">
+      <ion-label class="lbl" position="stacked">Mobile Number <ion-text color="danger">*</ion-text></ion-label>
+      <ion-input></ion-input>
+    </ion-item>
+
+    <ion-item lines="none" class="item-input">
+      <ion-label class="lbl" position="stacked">House No / Flat No / Floor <ion-text
+          color="danger">*</ion-text></ion-label>
+      <ion-input></ion-input>
+    </ion-item>
+
+    <ion-item lines="none" class="item-input">
+      <ion-label class="lbl" position="stacked">Society / Street Name <ion-text color="danger">*</ion-text></ion-label>
+      <ion-input></ion-input>
+    </ion-item>
+
+    <div class="type">
+      <ion-label [ngClass]="type == 'home' ? 'name-white':'name'"
+        [style.background-color]="type == 'home' ? '#244395' : 'lightgray'"
+        (click)="changeType('home')">Home</ion-label>
+
+      <ion-label [ngClass]="type == 'work' ? 'name-white':'name'"
+        [style.background-color]="type == 'work' ? '#244395' : 'lightgray'"
+        (click)="changeType('work')">Work</ion-label>
+
+      <ion-label [ngClass]="type == 'office' ? 'name-white':'name'"
+        [style.background-color]="type == 'office' ? '#244395' : 'lightgray'"
+        (click)="changeType('office')">Office</ion-label>
+    </div>
+
+    <ion-button expand="block" fill="solid" shape="round" color="primary">
+      Save Address
+    </ion-button>
+  </ion-card>
+</ion-content>

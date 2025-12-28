@@ -1,0 +1,194 @@
+:host {
+  --kuda-purple: #40196d;
+  --bg-soft: #f9f9fb;
+}
+
+.kuda-title {
+  font-weight: 800;
+  color: var(--kuda-purple);
+  font-size: 1.1rem;
+}
+
+.header-avatar {
+  width: 32px;
+  height: 32px;
+  margin-right: 15px;
+}
+
+.dashboard-container {
+  background: var(--bg-soft);
+  padding: 20px;
+  min-height: 100%;
+}
+
+/* WELCOME TEXT */
+.welcome-section {
+  margin-bottom: 25px;
+  .main-title {
+    font-size: 1.6rem;
+    font-weight: 800;
+    color: #1a1a1a;
+    margin: 0;
+  }
+  .sub-title {
+    font-size: 0.95rem;
+    color: #666;
+    margin: 5px 0 0;
+  }
+}
+
+/* ACTION CARDS */
+.action-card {
+  background: var(--kuda-purple);
+  border-radius: 20px;
+  padding: 24px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  color: white;
+  margin-bottom: 25px;
+  box-shadow: 0 10px 20px rgba(64, 25, 109, 0.2);
+
+  .action-info {
+    h3 { margin: 0; font-size: 1.2rem; font-weight: 700; }
+    p { margin: 5px 0 0; font-size: 0.85rem; opacity: 0.8; }
+  }
+  .action-icon ion-icon { font-size: 40px; }
+}
+
+/* SECTION HEADERS */
+.section-header {
+  display: flex;
+  align-items: center;
+  margin-bottom: 15px;
+  &.margin-top { margin-top: 30px; }
+
+  .section-title {
+    font-size: 1rem;
+    font-weight: 800;
+    color: #1a1a1a;
+    flex: 1;
+    margin: 0;
+  }
+
+  .count-badge {
+    background: var(--kuda-purple);
+    color: white;
+    font-size: 0.7rem;
+    font-weight: 700;
+    padding: 2px 8px;
+    border-radius: 10px;
+    margin-left: 8px;
+  }
+
+  .see-all {
+    font-size: 0.85rem;
+    font-weight: 700;
+    color: var(--kuda-purple);
+  }
+}
+
+/* ERRAND CARDS */
+.errand-card {
+  background: white;
+  border-radius: 16px;
+  padding: 16px;
+  margin-bottom: 15px;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.03);
+
+  .card-body {
+    display: flex;
+    align-items: flex-start;
+    
+    .icon-box {
+      width: 48px;
+      height: 48px;
+      background: #f4f4f7;
+      border-radius: 12px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin-right: 15px;
+      img { width: 30px; }
+    }
+
+    .info {
+      flex: 1;
+      .delivery-id { font-size: 0.7rem; font-weight: 700; color: #999; margin-bottom: 4px; }
+      h3 { margin: 0; font-size: 0.95rem; font-weight: 700; color: #1a1a1a; }
+      .address { 
+        margin: 4px 0 0; font-size: 0.8rem; color: #666; 
+        display: flex; align-items: center;
+        ion-icon { margin-right: 4px; color: var(--kuda-purple); }
+      }
+    }
+  }
+
+  .card-footer {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    border-top: 1px solid #f0f0f0;
+    margin-top: 12px;
+    padding-top: 12px;
+
+    .fee { font-size: 1rem; font-weight: 800; }
+    .chat-link { --color: var(--kuda-purple); font-weight: 700; font-size: 0.85rem; }
+  }
+}
+
+/* CATEGORY SLIDER */
+.category-slider {
+  padding: 5px 0;
+  .cate-info {
+    text-align: center;
+    .circle-icon {
+      width: 60px;
+      height: 60px;
+      background: white;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin: 0 auto 8px;
+      box-shadow: 0 4px 10px rgba(0,0,0,0.04);
+      img { width: 30px; }
+    }
+    .name { font-size: 0.75rem; font-weight: 700; color: #444; }
+  }
+}
+
+.promo-slider {
+  border-radius: 20px;
+  overflow: hidden;
+  margin-bottom: 25px;
+  .slider-screen { height: 160px; background-size: cover; background-position: center; }
+}
+
+.empty-state {
+  padding: 30px;
+  text-align: center;
+  background: white;
+  border-radius: 16px;
+  p { color: #999; font-size: 0.9rem; margin: 0; }
+}
+
+ion-toolbar {
+  --background: #ffffff !important; /* Forces solid white */
+  --color: #40196d !important;      /* Kuda Purple text */
+  --border-style: none;
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.05); /* Adds soft depth */
+}
+
+/* Ensure the header doesn't overlap the status bar on mobile */
+ion-header {
+  background: #ffffff;
+}
+ion-footer {
+  background: #ffffff;
+}
+:host {
+  display: block;
+  width: 100%;
+  height: 100%;
+}

@@ -1,0 +1,72 @@
+<ion-header class="ion-no-border">
+  <ion-toolbar>
+    <!-- <ion-buttons slot="start">
+      <ion-button (click)="onBack()" color="dark">
+        <ion-icon slot="icon-only" name="chevron-back-outline"></ion-icon>
+      </ion-button>
+    </ion-buttons> -->
+  </ion-toolbar>
+</ion-header>
+
+<ion-content class="ion-padding">
+  <div class="auth-screen" style="text-align: center;;">
+    <ion-label class="title">Welcome to ErrandBoy</ion-label>
+    <!-- <ion-label class="sub-title">Login to Unlock Awesome New Features</ion-label> -->
+
+    <br/>
+    <img src="assets/images/errand-boy-pic.png" alt="" class="img" style="width: 90% !important;">
+
+    <div class="bottom-content" *ngIf="showLoginPanel">
+      <ion-label class="lbl">Email Address</ion-label>
+      <ion-item class="item-content" lines="none">
+        <ion-input placeholder="Enter email address" type="email" #email></ion-input>
+      </ion-item>
+
+      <ion-label class="lbl">Password</ion-label>
+      <ion-item class="item-content" lines="none">
+        <ion-input placeholder="Enter password" type="password" #password></ion-input>
+      </ion-item>
+
+      <ion-item>
+        <ion-label>User Type</ion-label>
+        <ion-select #userType value="client">
+          <ion-select-option value="client">Client</ion-select-option>
+          <ion-select-option value="officer">Errand Officer</ion-select-option>
+        </ion-select>
+      </ion-item>
+
+      <ion-label class="reset-password" (click)="onReset()">Forgot Password?</ion-label>
+      <ion-button expand="block" fill="solid" color="primary" (click)="logIn(email, password, userType)">
+        Sign In
+      </ion-button>
+
+
+      <!-- <ion-label class="separate-lbl">Or Social Login</ion-label>
+
+      <div class="social-network">
+        <div class="btn" (click)="onHome()">
+          <ion-icon name="logo-facebook" color="tertiary"></ion-icon>
+        </div>
+        <div class="btn" (click)="onHome()">
+          <ion-icon name="logo-google" color="danger"></ion-icon>
+        </div>
+         <div class="btn" (click)="onHome()">
+          <ion-icon name="logo-twitter" color="secondary"></ion-icon>
+        </div>
+        <div class="btn" (click)="onHome()">
+          <ion-icon name="logo-instagram" color="dark"></ion-icon>
+        </div> 
+      </div> -->
+
+      <!-- <ion-label class="separate-lbl">Or</ion-label>
+
+      <ion-label class="skip" (click)="logInAsGuest()">Skip Login</ion-label> -->
+    </div>
+  </div>
+</ion-content>
+<ion-footer>
+  <ion-toolbar>
+    <ion-label class="create-account" (click)="onRegister()">Don't Have An Account? <span class="bold">Register</span>
+    </ion-label>
+  </ion-toolbar>
+</ion-footer>

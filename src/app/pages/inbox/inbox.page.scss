@@ -1,0 +1,248 @@
+/*
+  Authors : initappz (Rahul Jograna)
+  Website : https://initappz.com/
+  App Name : Velle Chat This App Template Source code is licensed as per the
+  terms found in the Website https://initappz.com/license
+  Copyright and Good Faith Purchasers © 2023-present initappz.
+*/
+
+.inbox-screen {
+  .chat-list {
+    .left-message {
+      display: flex;
+      justify-content: flex-start;
+      align-items: flex-start;
+      position: relative;
+
+      .text-type {
+        display: flex;
+        justify-content: flex-start;
+        align-items: flex-end;
+        margin-bottom: 20px;
+        width: 80%;
+
+        .msg {
+          background-color: #EFFAFF;
+          padding: 10px;
+          border-radius: 15px;
+          color: var(--ion-color-dark);
+          font-size: 12px;
+        }
+      }
+
+      .image-type {
+        display: flex;
+        flex-direction: column;
+        justify-content: flex-start;
+        align-items: flex-end;
+        margin-bottom: 20px;
+        width: 50%;
+
+        .img {
+          width: 100%;
+          height: 100px;
+          background-position: center;
+          background-repeat: no-repeat;
+          background-size: cover;
+          border-radius: 5px;
+          margin: 5px 0px;
+        }
+      }
+
+      .sender-img {
+        height: 20px;
+        width: 20px;
+        background-position: center;
+        background-repeat: no-repeat;
+        background-size: cover;
+        border-radius: 50%;
+      }
+    }
+
+    .right-message {
+      display: flex;
+      justify-content: flex-start;
+      flex-direction: row-reverse;
+      align-items: center;
+      position: relative;
+
+      .text-type {
+        display: flex;
+        justify-content: flex-end;
+        align-items: flex-end;
+        margin-bottom: 20px;
+        width: 80%;
+
+        .msg {
+          background-color: var(--ion-color-primary);
+          padding: 10px;
+          border-radius: 15px;
+          color: #fff;
+          font-size: 12px;
+        }
+      }
+
+      .image-type {
+        flex-direction: column;
+        display: flex;
+        justify-content: flex-end;
+        align-items: flex-end;
+        margin-bottom: 20px;
+        width: 50%;
+
+        .img {
+          width: 100%;
+          height: 100px;
+          background-position: center;
+          background-repeat: no-repeat;
+          background-size: cover;
+          border-radius: 5px;
+          margin: 5px 0px;
+        }
+      }
+    }
+  }
+}
+.segment-tab {
+  .segment-content {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 4px; /* Space between icon, label, and badge */
+  }
+
+  ion-icon {
+    font-size: 18px;
+  }
+
+  ion-label {
+    font-size: 14px;
+  }
+
+  ion-badge {
+    font-size: 10px;
+    height: 18px;
+    min-width: 18px;
+  }
+}
+.overview-card, .officer-card {
+  border-radius: 16px;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
+  margin-bottom: 16px;
+  margin: 0px !important;
+}
+
+.overview-info {
+  display: flex;
+  align-items: flex-start;
+  gap: 12px;
+}
+
+.overview-img {
+  width: 70px;
+  height: 70px;
+  border-radius: 8px;
+  object-fit: cover;
+}
+
+.overview-details p {
+  margin: 4px 0;
+  font-size: 14px;
+  color: var(--ion-color-dark);
+}
+
+.officer-info {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.officer-img {
+  height: 80px;
+  width: 80px;
+  border-radius: 50%;
+  object-fit: cover;
+}
+
+.officer-details p {
+  margin: 4px 0;
+}
+
+ion-card-subtitle {
+  font-size: 13px;
+  color: var(--ion-color-medium);
+}
+
+ion-card-title {
+  font-weight: 600;
+  font-size: 1rem;
+}
+.chat-view {
+  height: 100%;
+}
+
+.chat-content {
+  --background: #f4f7fb;
+  padding-bottom: 70px; /* space for footer */
+}
+
+.chat-container {
+  display: flex;
+  flex-direction: column;
+  padding: 12px;
+}
+
+.chat-bubble {
+  max-width: 80%;
+  padding: 10px 14px;
+  border-radius: 18px;
+  margin: 6px 0;
+  word-break: break-word;
+  position: relative;
+  font-size: 15px;
+  line-height: 1.4;
+}
+
+.chat-bubble.incoming {
+  background-color: #ffffff;
+  align-self: flex-start;
+  border: 1px solid #e1e5ea;
+}
+
+.chat-bubble.outgoing {
+  background-color: var(--ion-color-primary);
+  color: white;
+  align-self: flex-end;
+}
+
+.chat-bubble .timestamp {
+  font-size: 10px;
+  opacity: 0.6;
+  margin-top: 4px;
+  text-align: right;
+}
+
+.chat-bubble .image-list img {
+  width: 140px;
+  border-radius: 12px;
+  margin-top: 6px;
+}
+
+.chat-footer {
+  --background: #fff;
+  border-top: 1px solid #dcdcdc;
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  right: 0;
+}
+
+.message-input {
+  flex: 1;
+  --background: transparent;
+  --inner-padding-end: 0;
+  --inner-padding-start: 0;
+  ion-textarea {
+    font-size: 14px;
+  }
+}

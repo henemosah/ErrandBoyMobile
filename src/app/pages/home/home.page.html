@@ -1,0 +1,111 @@
+<ion-header class="ion-no-border">
+  <ion-toolbar mode="md" color="white">
+    <ion-buttons slot="start">
+      <ion-button color="primary" (click)="util.openSideMenu()">
+        <ion-icon slot="icon-only" name="menu-outline"></ion-icon>
+      </ion-button>
+    </ion-buttons>
+    <ion-title class="kuda-title">Dashboard</ion-title>
+    <ion-buttons slot="end">
+      <ion-avatar class="header-avatar">
+        <img src="assets/images/avatar.jpg" />
+      </ion-avatar>
+    </ion-buttons>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content [fullscreen]="true">
+  <div class="dashboard-container">
+    
+    <div class="welcome-section">
+      <h1 class="main-title">Hello {{ username }},</h1>
+      <p class="sub-title">What errand can we help you with today?</p>
+    </div>
+
+    <div class="action-card main-purple" (click)="requestDelivery()">
+      <div class="action-info">
+        <h3>Request an Errand</h3>
+        <p>Get anything delivered instantly</p>
+      </div>
+      <div class="action-icon">
+        <ion-icon name="add-circle"></ion-icon>
+      </div>
+    </div>
+
+    <swiper-container slides-per-view="1" speed="500" loop="false" css-mode="true" space-between="10" class="promo-slider">
+      <swiper-slide *ngFor="let item of util.banners;">
+        <div class="slider-screen" [ngStyle]="{'background-image': 'url('+item+')'}" (click)="byCategories('Offers')">
+        </div>
+      </swiper-slide>
+    </swiper-container>
+
+    <div class="section-header">
+      <h2 class="section-title">Active Orders</h2>
+      <span class="count-badge" *ngIf="pendingDeliveries.length > 0">{{pendingDeliveries.length}}</span>
+    </div>
+
+    <div class="empty-state" *ngIf="pendingDeliveries?.length === 0">
+      <p>No active errands at the moment</p>
+    </div>
+
+    <div class="errand-card" *ngFor="let delivery of pendingDeliveries">
+      <div class="card-body">
+        <div class="icon-box">
+          <img [src]="getRandomIconImage()" />
+        </div>
+        <div class="info">
+          <div class="delivery-id">#{{delivery.delivery_no || 'DEL-XXXXX'}}</div>
+          <h3>{{ delivery.description }}</h3>
+          <p class="address"><ion-icon name="location-outline"></ion-icon> {{ delivery.dropoff }}</p>
+        </div>
+      </div>
+      <div class="card-footer">
+        <div class="fee" [style.color]="calculateFee(delivery) >= 5000 ? '#f44336' : '#40196d'">
+          ₦ {{ calculateFee(delivery) | number }}
+        </div>
+        <ion-button fill="clear" (click)="errandDetails(delivery)" class="chat-link">
+          Chat <ion-icon slot="end" name="chatbubble-ellipses-outline"></ion-icon>
+        </ion-button>
+      </div>
+    </div>
+
+    <div class="section-header margin-top" style="display: none;">
+      <h2 class="section-title">Categories</h2>
+      <ion-label class="see-all" (click)="onCategories()">See All</ion-label>
+    </div>
+
+    <swiper-container slides-per-view="4" speed="500" loop="false" css-mode="true" space-between="15" class="category-slider" style="display: none;">
+      <swiper-slide *ngFor="let item of util.categories;">
+        <div class="cate-info" (click)="byCategories(item.name)">
+          <div class="circle-icon">
+            <img [src]="item.image" alt="" class="img">
+          </div>
+          <ion-label class="name">{{item.name}}</ion-label>
+        </div>
+      </swiper-slide>
+    </swiper-container>
+
+    <div class="section-header margin-top" *ngIf="deliveries.length > 0">
+      <h2 class="section-title">Pending Requests</h2>
+    </div>
+
+    <div class="errand-card pending-card" *ngFor="let delivery of deliveries">
+      <div class="card-body">
+        <div class="info">
+          <div class="delivery-id">#{{ delivery.delivery_no || 'DEL-XXXXX' }}</div>
+          <h3>{{ delivery.description }}</h3>
+          <p class="fee-small">Fee: ₦ {{ calculateFee(delivery) | number }}</p>
+        </div>
+        <ion-button fill="clear" color="danger" (click)="cancelErrand(delivery)" class="cancel-btn">
+          <ion-icon name="close-circle-outline"></ion-icon>
+        </ion-button>
+      </div>
+    </div>
+  </div>
+</ion-content>
+
+<ion-footer class="ion-no-border">
+  <ion-toolbar color="white">
+    <app-tabs [navigation]="'home'"></app-tabs>
+  </ion-toolbar>
+</ion-footer>

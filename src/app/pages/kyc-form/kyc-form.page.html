@@ -1,0 +1,113 @@
+<ion-header class="ion-no-border">
+  <ion-toolbar mode="md" color="white">
+    <ion-buttons slot="start">
+      <ion-back-button defaultHref="/profile" text="" icon="chevron-back-outline"></ion-back-button>
+    </ion-buttons>
+    <ion-title class="wizard-title">Identity Verification</ion-title>
+  </ion-toolbar>
+  
+  <div class="progress-container">
+    <div class="progress-bar-bg">
+      <div class="progress-bar-fill" [style.width]="(currentStep / 3) * 100 + '%'"></div>
+    </div>
+    <div class="step-counter">Step {{ currentStep }} of 3</div>
+  </div>
+</ion-header>
+
+<ion-content [fullscreen]="true" class="ion-padding">
+  <form *ngIf="kycForm" [formGroup]="kycForm">
+
+    <div *ngIf="currentStep === 1" class="step-wrapper fade-in">
+      <h2 class="section-title">Personal Details</h2>
+      <p class="section-subtitle">Please ensure these details match your government ID.</p>
+      
+      <div class="input-group">
+        <ion-item lines="none" class="custom-input">
+          <ion-label position="stacked">First Name</ion-label>
+          <ion-input formControlName="firstName" placeholder="e.g. John"></ion-input>
+        </ion-item>
+
+        <ion-item lines="none" class="custom-input">
+          <ion-label position="stacked">Last Name</ion-label>
+          <ion-input formControlName="lastName" placeholder="e.g. Doe"></ion-input>
+        </ion-item>
+
+        <ion-item lines="none" class="custom-input" id="open-date-input">
+          <ion-label position="stacked">Date of Birth</ion-label>
+          <ion-text class="placeholder-text">{{ kycForm.value.dob ? (kycForm.value.dob | date) : 'Select Date' }}</ion-text>
+          <ion-modal trigger="open-date-input" [keepContentsOnShow]="true">
+            <ng-template>
+              <ion-datetime formControlName="dob" presentation="date" showDefaultButtons="true"></ion-datetime>
+            </ng-template>
+          </ion-modal>
+        </ion-item>
+      </div>
+    </div>
+
+    <div *ngIf="currentStep === 2" class="step-wrapper fade-in">
+      <h2 class="section-title">Where do you live?</h2>
+      <p class="section-subtitle">We need this to verify your residential status.</p>
+
+      <div class="input-group">
+        <ion-item lines="none" class="custom-input">
+          <ion-label position="stacked">Street Address</ion-label>
+          <ion-input formControlName="address"></ion-input>
+        </ion-item>
+
+        <ion-item lines="none" class="custom-input">
+          <ion-label position="stacked">City</ion-label>
+          <ion-input formControlName="city"></ion-input>
+        </ion-item>
+
+        <ion-item lines="none" class="custom-input">
+          <ion-label position="stacked">Country</ion-label>
+          <ion-select formControlName="country" interface="action-sheet" placeholder="Select Country">
+            <ion-select-option *ngFor="let c of countries" [value]="c">{{ c }}</ion-select-option>
+          </ion-select>
+        </ion-item>
+      </div>
+    </div>
+
+    <div *ngIf="currentStep === 3" class="step-wrapper fade-in">
+      <h2 class="section-title">Verification Documents</h2>
+      <p class="section-subtitle">Take a clear photo of your ID and a selfie.</p>
+
+      <ion-item lines="none" class="custom-input ion-margin-bottom">
+        <ion-label position="stacked">ID Type</ion-label>
+        <ion-select formControlName="idType" placeholder="Choose ID Type">
+          <ion-select-option value="national-id">National ID Card</ion-select-option>
+          <ion-select-option value="passport">International Passport</ion-select-option>
+        </ion-select>
+      </ion-item>
+
+      <div class="upload-container" (click)="idFile.click()">
+        <ion-icon name="cloud-upload-outline" color="primary"></ion-icon>
+        <p>{{ idImageUrl ? 'ID Uploaded' : 'Upload ID Document' }}</p>
+        <input #idFile type="file" hidden (change)="uploadId($event)">
+      </div>
+
+      <div class="upload-container ion-margin-top" (click)="selfieFile.click()">
+        <ion-icon name="camera-outline" color="primary"></ion-icon>
+        <p>{{ selfieUrl ? 'Selfie Captured' : 'Take a Selfie' }}</p>
+        <input #selfieFile type="file" hidden (change)="uploadSelfie($event)">
+      </div>
+    </div>
+
+  </form>
+</ion-content>
+
+<ion-footer class="ion-no-border ion-padding">
+  <div class="footer-buttons">
+    <ion-button *ngIf="currentStep > 1" fill="clear" (click)="prevStep()" color="medium">
+      Back
+    </ion-button>
+    
+    <ion-button *ngIf="currentStep < 3" expand="block" (click)="nextStep()" class="kuda-btn" [disabled]="isStepInvalid()">
+      Continue
+    </ion-button>
+
+    <ion-button *ngIf="currentStep === 3" expand="block" (click)="submitKYC()" class="kuda-btn" [disabled]="loading || kycForm.invalid">
+      {{ loading ? 'Processing...' : 'Complete Verification' }}
+    </ion-button>
+  </div>
+</ion-footer>

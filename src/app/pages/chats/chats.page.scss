@@ -1,0 +1,616 @@
+/*
+  Authors : initappz (Rahul Jograna)
+  Website : https://initappz.com/
+  App Name : Velle Chat This App Template Source code is licensed as per the
+  terms found in the Website https://initappz.com/license
+  Copyright and Good Faith Purchasers © 2023-present initappz.
+*/
+
+.chat-screen {
+  .chat-content {
+    overflow: hidden;
+    width: 100%;
+
+    .no-data {
+      width: 100%;
+      height: 100vh;
+      display: flex;
+      flex-direction: column;
+      justify-content: flex-start;
+      align-items: center;
+
+      .image {
+        height: 300px;
+        width: 100%;
+        background-position: center;
+        background-repeat: no-repeat;
+        background-size: contain;
+      }
+
+      .title {
+        font-family: 'bold';
+        font-size: 16px;
+        color: var(--ion-color-dark);
+        text-align: center;
+      }
+
+      .sub-title {
+        font-size: 14px;
+        font-family: 'regular';
+        color: var(--ion-color-medium);
+        text-align: center;
+      }
+    }
+
+    .chat-loader {
+      padding: 10px 8px;
+
+      .stories-loader {
+        display: flex;
+        flex-direction: row;
+        justify-content: flex-start;
+        align-items: flex-start;
+
+        .stores {
+          display: flex;
+          flex-direction: column;
+          justify-content: space-between;
+          align-items: center;
+          margin: 0px 5px;
+
+          ion-avatar {
+            height: 30px;
+            width: 30px;
+          }
+        }
+      }
+
+      .inline-loader {
+        ion-item {
+          --padding-start: 0px;
+        }
+      }
+    }
+
+    .real-chat {
+      padding: 10px 8px;
+
+      .stories-chat-list {
+        .new-story {
+          display: flex;
+          flex-direction: column;
+          align-items: center;
+          justify-content: center;
+
+          .circle {
+            background-color: #f3f3f3;
+            border-radius: 50%;
+            display: flex;
+            flex-direction: row;
+            justify-content: center;
+            align-items: center;
+            height: 50px;
+            width: 50px;
+
+            ion-icon {
+              font-size: 24px;
+              color: var(--ion-color-medium);
+            }
+          }
+
+          .title {
+            font-size: 10px;
+            margin: 5px 0px;
+          }
+        }
+
+        .avtar-list {
+          display: flex;
+          flex-direction: column;
+          align-items: center;
+          justify-content: center;
+
+          .avatar {
+            border-radius: 50%;
+            display: flex;
+            flex-direction: row;
+            justify-content: center;
+            align-items: center;
+            height: 50px;
+            width: 50px;
+            background-position: center;
+            background-repeat: no-repeat;
+            background-size: contain;
+            border: 1px solid var(--ion-color-primary);
+            position: relative;
+
+            .live {
+              position: absolute;
+              background-color: var(--ion-color-danger);
+              bottom: -5px;
+              border-radius: 5px;
+
+              .live-lbl {
+                font-size: 10px;
+                font-family: 'semi-bold';
+                color: var(--ion-color-light);
+                padding: 2px;
+              }
+            }
+
+            .online-circle {
+              position: absolute;
+              background-color: var(--ion-color-primary);
+              height: 15px;
+              width: 15px;
+              border-radius: 50%;
+              bottom: 0px;
+              right: -3px;
+            }
+
+            .offline-circle {
+              position: absolute;
+              background-color: var(--ion-color-medium);
+              height: 15px;
+              width: 15px;
+              border-radius: 50%;
+              bottom: 0px;
+              right: -3px;
+            }
+          }
+
+          .title {
+            font-size: 10px;
+            margin: 5px 0px;
+            font-family: 'bold';
+          }
+        }
+      }
+
+      .real-chat-list {
+        margin: 10px;
+
+        .chat-item-list {
+          display: flex;
+          flex-direction: row;
+          justify-content: space-between;
+          align-items: center;
+          margin-bottom: 10px;
+
+          .first {
+            display: flex;
+            flex-direction: row;
+            justify-content: flex-start;
+            align-items: center;
+
+            .avatar {
+              border-radius: 50%;
+              display: flex;
+              flex-direction: row;
+              justify-content: center;
+              align-items: center;
+              height: 50px;
+              width: 50px;
+              background-position: center;
+              background-repeat: no-repeat;
+              background-size: contain;
+              border: 1px solid var(--ion-color-primary);
+              position: relative;
+
+              .online-circle {
+                position: absolute;
+                background-color: var(--ion-color-primary);
+                height: 15px;
+                width: 15px;
+                border-radius: 50%;
+                bottom: 0px;
+                right: -3px;
+              }
+
+              .offline-circle {
+                position: absolute;
+                background-color: var(--ion-color-medium);
+                height: 15px;
+                width: 15px;
+                border-radius: 50%;
+                bottom: 0px;
+                right: -3px;
+              }
+            }
+
+            .name-content {
+              display: flex;
+              flex-direction: column;
+              justify-content: flex-start;
+              align-items: flex-start;
+              padding: 0px 10px;
+
+              .name {
+                font-size: 14px;
+                font-family: 'bold';
+                text-align: start;
+              }
+
+              .last-message {
+                font-size: 12px;
+                font-family: 'regular';
+                text-align: start;
+              }
+            }
+          }
+
+          .last {
+            .time {
+              font-size: 12px;
+              font-family: 'semi-bold';
+              color: var(--ion-color-medium);
+              text-align: end;
+            }
+
+            .time-bold {
+              font-size: 12px;
+              font-family: 'bold';
+              color: var(--ion-color-dark);
+              text-align: end;
+            }
+          }
+        }
+      }
+    }
+  }
+
+  .group-content {
+    overflow: hidden;
+    width: 100%;
+
+    .no-data {
+      width: 100%;
+      height: 100vh;
+      display: flex;
+      flex-direction: column;
+      justify-content: flex-start;
+      align-items: center;
+
+      .image {
+        height: 300px;
+        width: 100%;
+        background-position: center;
+        background-repeat: no-repeat;
+        background-size: contain;
+      }
+
+      .title {
+        font-family: 'bold';
+        font-size: 16px;
+        color: var(--ion-color-dark);
+        text-align: center;
+      }
+
+      .sub-title {
+        font-size: 14px;
+        font-family: 'regular';
+        color: var(--ion-color-medium);
+        text-align: center;
+      }
+    }
+
+    .group-loader {
+      padding: 10px 8px;
+
+      .loader {
+        .content {
+          border: 1px solid lightgray;
+          border-radius: 5px;
+          padding: 10px;
+          display: flex;
+          flex-direction: column;
+          justify-content: space-between;
+          align-items: center;
+
+          .head {
+            display: flex;
+            flex-direction: row;
+            justify-content: space-between;
+            align-items: center;
+            width: 100%;
+          }
+
+          .avtar-list {
+            display: flex;
+            flex-direction: row;
+            justify-content: center;
+            align-items: center;
+
+            ion-avatar {
+              width: 25px;
+              height: 25px;
+            }
+          }
+        }
+      }
+    }
+
+    .real-group-list {
+      padding: 10px 8px;
+
+      .group-list-item {
+        .new-group-button {
+          border: 1px solid #f3f3f3;
+          box-shadow: 1px 0px 3px 0px #f3f3f3;
+          border-radius: 5px;
+          display: flex;
+          flex-direction: column;
+          justify-content: center;
+          align-items: center;
+          padding: 38px 15px;
+
+          .circle {
+            height: 50px;
+            width: 50px;
+            background-color: #f3f3f3;
+            border-radius: 50%;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+
+            ion-icon {
+              font-size: 18px;
+              color: var(--ion-color-dark);
+            }
+          }
+
+          .group-name {
+            margin: 10px 0px;
+            font-size: 14px;
+            font-family: 'semi-bold';
+            text-align: center;
+            color: var(--ion-color-medium);
+          }
+        }
+
+        .group-item-content {
+          padding: 10px;
+          border: 1px solid #f3f3f3 !important;
+          box-shadow: 1px 0px 3px 0px #f3f3f3;
+          border-radius: 5px;
+          display: flex;
+          flex-direction: column;
+          justify-content: space-between;
+          align-items: center;
+
+          .head {
+            display: flex;
+            flex-direction: row;
+            justify-content: space-between;
+            align-items: center;
+            width: 100%;
+          }
+
+          .avatar {
+            border-radius: 50%;
+            display: flex;
+            flex-direction: row;
+            justify-content: center;
+            align-items: center;
+            height: 60px;
+            width: 60px;
+            background-position: center;
+            background-repeat: no-repeat;
+            background-size: contain;
+            border: 1px solid var(--ion-color-primary);
+            position: relative;
+            margin: 10px 0px;
+
+            .live {
+              position: absolute;
+              background-color: var(--ion-color-danger);
+              bottom: -5px;
+              border-radius: 5px;
+
+              .live-lbl {
+                font-size: 10px;
+                font-family: 'semi-bold';
+                color: var(--ion-color-light);
+                padding: 2px;
+              }
+            }
+
+            .online-circle {
+              position: absolute;
+              background-color: var(--ion-color-primary);
+              height: 15px;
+              width: 15px;
+              border-radius: 50%;
+              bottom: 0px;
+              right: -3px;
+            }
+
+            .offline-circle {
+              position: absolute;
+              background-color: var(--ion-color-medium);
+              height: 15px;
+              width: 15px;
+              border-radius: 50%;
+              bottom: 0px;
+              right: -3px;
+            }
+          }
+
+          .group-name {
+            font-size: 12px;
+            font-family: 'bold';
+            text-align: center;
+            margin: 5px 0px;
+          }
+
+          .avtar-list {
+            display: flex;
+            flex-direction: row;
+
+            .img-name {
+              height: 20px;
+              width: 20px;
+              border-radius: 50%;
+              border: 1px solid gray;
+            }
+          }
+        }
+      }
+    }
+  }
+
+  .call-content {
+    overflow: hidden;
+    width: 100%;
+
+    .no-data {
+      width: 100%;
+      height: 100vh;
+      display: flex;
+      flex-direction: column;
+      justify-content: flex-start;
+      align-items: center;
+
+      .image {
+        height: 300px;
+        width: 100%;
+        background-position: center;
+        background-repeat: no-repeat;
+        background-size: contain;
+      }
+
+      .title {
+        font-family: 'bold';
+        font-size: 16px;
+        color: var(--ion-color-dark);
+        text-align: center;
+      }
+
+      .sub-title {
+        font-size: 14px;
+        font-family: 'regular';
+        color: var(--ion-color-medium);
+        text-align: center;
+      }
+    }
+
+    .chat-loader {
+      padding: 10px 8px;
+
+      .inline-loader {
+        ion-item {
+          --padding-start: 0px;
+
+          .small {
+            height: 25px;
+            width: 25px;
+          }
+        }
+      }
+    }
+
+    .real-call-list {
+      margin: 10px;
+
+      .call-item-list {
+        display: flex;
+        flex-direction: row;
+        justify-content: space-between;
+        align-items: center;
+        margin-bottom: 10px;
+
+        .first {
+          display: flex;
+          flex-direction: row;
+          justify-content: flex-start;
+          align-items: center;
+
+          .avatar {
+            border-radius: 50%;
+            display: flex;
+            flex-direction: row;
+            justify-content: center;
+            align-items: center;
+            height: 50px;
+            width: 50px;
+            background-position: center;
+            background-repeat: no-repeat;
+            background-size: contain;
+            border: 1px solid var(--ion-color-primary);
+            position: relative;
+
+            .online-circle {
+              position: absolute;
+              background-color: var(--ion-color-primary);
+              height: 15px;
+              width: 15px;
+              border-radius: 50%;
+              bottom: 0px;
+              right: -3px;
+            }
+
+            .offline-circle {
+              position: absolute;
+              background-color: var(--ion-color-medium);
+              height: 15px;
+              width: 15px;
+              border-radius: 50%;
+              bottom: 0px;
+              right: -3px;
+            }
+          }
+
+          .name-content {
+            display: flex;
+            flex-direction: column;
+            justify-content: flex-start;
+            align-items: flex-start;
+            padding: 0px 10px;
+
+            .name {
+              font-size: 14px;
+              font-family: 'bold';
+              text-align: start;
+            }
+
+            .last-message-red {
+              font-size: 12px;
+              font-family: 'semi-bold';
+              text-align: start;
+              color: var(--ion-color-danger);
+            }
+
+            .last-message-gray {
+              font-size: 12px;
+              font-family: 'semi-bold';
+              text-align: start;
+              color: var(--ion-color-medium);
+            }
+          }
+        }
+
+        .last {
+          display: flex;
+          flex-direction: row;
+          justify-content: flex-end;
+          align-items: center;
+
+          .time {
+            font-size: 12px;
+            font-family: 'semi-bold';
+            color: var(--ion-color-medium);
+            text-align: end;
+          }
+
+          .time-bold {
+            font-size: 12px;
+            font-family: 'bold';
+            color: var(--ion-color-dark);
+            text-align: end;
+          }
+        }
+      }
+    }
+  }
+}

@@ -1,0 +1,136 @@
+:host {
+  --kuda-purple: #40196d;
+  --bg-soft: #f9f9fb;
+}
+
+.kuda-title {
+  font-weight: 800;
+  color: var(--kuda-purple);
+  font-size: 1.1rem;
+}
+
+.header-avatar {
+  width: 32px;
+  height: 32px;
+  margin-right: 15px;
+}
+
+/* SEARCH BAR REDESIGN */
+.search-container {
+  background: #f4f4f7;
+  border-radius: 12px;
+  padding: 12px 16px;
+  display: flex;
+  align-items: center;
+  color: #888;
+  font-size: 0.9rem;
+  margin-bottom: 10px;
+
+  ion-icon { font-size: 20px; margin-right: 10px; }
+  span { flex: 1; }
+}
+
+/* SEGMENT STYLE */
+.kuda-segment {
+  --background: transparent;
+  ion-segment-button {
+    --color: #888;
+    --color-checked: var(--kuda-purple);
+    --indicator-color: var(--kuda-purple);
+    font-weight: 700;
+    font-size: 0.85rem;
+  }
+}
+
+/* CATEGORY GRID */
+.categories-container {
+  background: var(--bg-soft);
+  padding: 12px;
+  min-height: 100%;
+}
+
+.category-card {
+  background: white;
+  border-radius: 20px;
+  margin: 8px;
+  padding: 15px;
+  text-align: center;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.02);
+  transition: transform 0.2s ease;
+
+  &:active { transform: scale(0.96); }
+
+  .icon-wrapper {
+    width: 80px;
+    height: 80px;
+    background: #f4f4f7;
+    border-radius: 50%;
+    margin: 0 auto 12px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 15px;
+
+    img { width: 100%; object-fit: contain; }
+  }
+
+  .info-wrapper {
+    .category-name {
+      font-size: 0.95rem;
+      font-weight: 800;
+      color: #1a1a1a;
+      margin: 0 0 8px;
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+    }
+
+    .meta-row {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 5px;
+
+      .price-tag {
+        font-size: 0.8rem;
+        font-weight: 700;
+        color: var(--kuda-purple);
+      }
+
+      .rating {
+        display: flex;
+        align-items: center;
+        background: #fff9e6;
+        padding: 2px 6px;
+        border-radius: 6px;
+        
+        ion-icon { color: #ffc107; font-size: 12px; margin-right: 3px; }
+        span { font-size: 0.75rem; font-weight: 700; color: #b28900; }
+      }
+    }
+
+    .sub-label {
+      font-size: 0.75rem;
+      color: #999;
+      margin: 0;
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+    }
+  }
+}
+
+ion-toolbar {
+  --background: #ffffff !important; /* Forces solid white */
+  --color: #40196d !important;      /* Kuda Purple text */
+  --border-style: none;
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.05); /* Adds soft depth */
+}
+
+/* Ensure the header doesn't overlap the status bar on mobile */
+ion-header {
+  background: #ffffff;
+}
+ion-footer {
+  background: #ffffff;
+}

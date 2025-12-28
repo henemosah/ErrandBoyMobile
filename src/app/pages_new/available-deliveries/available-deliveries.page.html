@@ -1,0 +1,88 @@
+<ion-header class="ion-no-border">
+  <ion-toolbar mode="md" color="white">
+    <ion-buttons slot="start">
+      <ion-button color="primary" (click)="util.openSideMenu()">
+        <ion-icon slot="icon-only" name="menu-outline"></ion-icon>
+      </ion-button>
+    </ion-buttons>
+    <ion-title class="kuda-title">Errands</ion-title>
+    <ion-buttons slot="end">
+      <ion-avatar class="header-avatar">
+        <img src="assets/images/avatar.jpg" />
+      </ion-avatar>
+    </ion-buttons>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content [fullscreen]="true">
+  <div class="errands-container">
+    
+    <div class="section-header">
+      <h2 class="main-title">My Active Errands</h2>
+    </div>
+
+    <div class="empty-state" *ngIf="pendingDeliveries?.length === 0">
+      <img src="assets/images/my_errands.jpg" alt="No errands" />
+      <p>No errands currently pending delivery</p>
+    </div>
+
+    <div class="errand-card pending" *ngFor="let delivery of pendingDeliveries">
+      <div class="card-top">
+        <div class="delivery-id">#{{delivery.delivery_no || 'DEL-XXXXX'}}</div>
+        <div class="status-badge">In Progress</div>
+      </div>
+      
+      <div class="card-body">
+        <div class="icon-box">
+          <img [src]="getRandomIconImage()" />
+        </div>
+        <div class="info">
+          <h3>{{ delivery.description }}</h3>
+          <p class="address"><ion-icon name="location-outline"></ion-icon> {{ delivery.dropoff }}</p>
+          <p class="date">{{delivery.timestamp.seconds*1000 | date: 'dd MMM, yyyy'}}</p>
+        </div>
+      </div>
+
+      <div class="card-footer">
+        <div class="fee">₦ {{ calculateFee(delivery) | number }}</div>
+        <ion-button fill="clear" (click)="errandDetails(delivery)" class="chat-btn">
+          Chat <ion-icon slot="end" name="chatbubble-ellipses-outline"></ion-icon>
+        </ion-button>
+      </div>
+    </div>
+
+    <div class="section-header margin-top">
+      <h2 class="main-title">Available Requests ({{ deliveriesCount }})</h2>
+    </div>
+
+    <div class="errand-card available" *ngFor="let delivery of deliveries">
+      <div class="card-top">
+        <div class="delivery-id">#{{ delivery.delivery_no || 'DEL-XXXXX' }}</div>
+      </div>
+
+      <div class="card-body">
+        <div class="icon-box">
+          <img [src]="getRandomIconImage()" />
+        </div>
+        <div class="info">
+          <h3>{{ delivery.description }}</h3>
+          <p class="address"><ion-icon name="location-outline"></ion-icon> {{ delivery.dropoff }}</p>
+          <p class="date">{{delivery.timestamp.seconds*1000 | date: 'dd MMM, yyyy'}}</p>
+        </div>
+      </div>
+
+      <div class="card-footer">
+        <div class="fee">₦ {{ calculateFee(delivery) | number }}</div>
+        <ion-button (click)="acceptDelivery(delivery)" class="kuda-btn-small">
+          Accept Errand
+        </ion-button>
+      </div>
+    </div>
+  </div>
+</ion-content>
+
+<ion-footer class="ion-no-border">
+  <ion-toolbar color="white">
+    <app-tabs [navigation]="'home'"></app-tabs>
+  </ion-toolbar>
+</ion-footer>

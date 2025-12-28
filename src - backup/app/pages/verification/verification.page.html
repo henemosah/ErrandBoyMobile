@@ -1,0 +1,44 @@
+<!--
+  Authors : initappz (Rahul Jograna)
+  Website : https://initappz.com/
+  App Name : Foodies-3 FoodDon This App Template Source code is licensed as per the
+  terms found in the Website https://initappz.com/license
+  Copyright and Good Faith Purchasers © 2023-present initappz.
+-->
+<ion-header class="ion-no-border">
+  <ion-toolbar>
+    <ion-buttons slot="start">
+      <ion-button (click)="onBack()" color="dark">
+        <ion-icon slot="icon-only" name="chevron-back-outline"></ion-icon>
+      </ion-button>
+    </ion-buttons>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content class="ion-padding">
+  <div class="auth-screen">
+    <ion-label class="title">One Time Password</ion-label>
+    <ion-label class="sub-title">Please enter 6-Digit Verification Code sent by SMS on your Mobile Number (+91)
+      963-963-8523</ion-label>
+
+    <div class="end-btn">
+      <ion-label class="timer">00:60</ion-label>
+      <ion-label class="resend">Resend OTP</ion-label>
+    </div>
+    <div class="bottom-content">
+      <ion-label class="lbl">OTP</ion-label>
+
+      <div class="otp-content">
+        <ng-otp-input
+          [config]="{length:6,isPasswordInput:false,inputStyles:{'width': '50px','height': '50px','border':'1px solid lightgray','background-color':'#fff','border-radius':'50%'},placeholder:'*'}"></ng-otp-input>
+      </div>
+      <ion-button expand="block" fill="solid" color="primary" (click)="onVerify()">
+        Submit
+      </ion-button>
+
+      <ion-label class="separate-lbl">Or</ion-label>
+
+      <ion-label class="skip" (click)="onHome()">Skip Login</ion-label>
+    </div>
+  </div>
+</ion-content>

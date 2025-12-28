@@ -1,0 +1,95 @@
+.chat-list {
+    .left-message {
+      display: flex;
+      justify-content: flex-start;
+      align-items: flex-start;
+      position: relative;
+
+      .text-type {
+        display: flex;
+        justify-content: flex-start;
+        align-items: flex-end;
+        margin-bottom: 20px;
+        width: 80%;
+
+        .msg {
+          background-color: #EFFAFF;
+          padding: 10px;
+          border-radius: 15px;
+          color: var(--ion-color-dark);
+          font-size: 12px;
+        }
+      }
+
+      .image-type {
+        display: flex;
+        flex-direction: column;
+        justify-content: flex-start;
+        align-items: flex-end;
+        margin-bottom: 20px;
+        width: 50%;
+
+        .img {
+          width: 100%;
+          height: 100px;
+          background-position: center;
+          background-repeat: no-repeat;
+          background-size: cover;
+          border-radius: 5px;
+          margin: 5px 0px;
+        }
+      }
+
+      .sender-img {
+        height: 20px;
+        width: 20px;
+        background-position: center;
+        background-repeat: no-repeat;
+        background-size: cover;
+        border-radius: 50%;
+      }
+    }
+
+    .right-message {
+      display: flex;
+      justify-content: flex-start;
+      flex-direction: row-reverse;
+      align-items: center;
+      position: relative;
+
+      .text-type {
+        display: flex;
+        justify-content: flex-end;
+        align-items: flex-end;
+        margin-bottom: 20px;
+        width: 80%;
+
+        .msg {
+          background-color: var(--ion-color-primary);
+          padding: 10px;
+          border-radius: 15px;
+          color: #fff;
+          font-size: 12px;
+        }
+      }
+
+      .image-type {
+        flex-direction: column;
+        display: flex;
+        justify-content: flex-end;
+        align-items: flex-end;
+        margin-bottom: 20px;
+        width: 50%;
+
+        .img {
+          width: 100%;
+          height: 100px;
+          background-position: center;
+          background-repeat: no-repeat;
+          background-size: cover;
+          border-radius: 5px;
+          margin: 5px 0px;
+        }
+      }
+    }
+  }

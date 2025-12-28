@@ -1,0 +1,45 @@
+<!--
+  Authors : initappz (Rahul Jograna)
+  Website : https://initappz.com/
+  App Name : Foodies-3 FoodDon This App Template Source code is licensed as per the
+  terms found in the Website https://initappz.com/license
+  Copyright and Good Faith Purchasers © 2023-present initappz.
+-->
+<ion-header class="ion-no-border">
+  <ion-toolbar mode="md" color="primary">
+    <ion-buttons slot="start">
+      <ion-button (click)="onBack()" color="light">
+        <ion-icon slot="icon-only" name="chevron-back-outline"></ion-icon>
+      </ion-button>
+    </ion-buttons>
+    <ion-title>Orders</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content class="ion-padding">
+  <div class="order-screen">
+    <ion-card mode="ios" class="order-list" *ngFor="let item of foods;">
+      <ion-row class="order-info">
+        <ion-col size="3">
+          <div class="cover" [ngStyle]="{'background-image': 'url('+item.image+')'}">
+            <div class="badge">
+              <ion-label class="lbl">Accepted</ion-label>
+            </div>
+          </div>
+        </ion-col>
+        <ion-col size="9">
+          <div class="name-content">
+            <div class="food-list" *ngFor="let foods of foods.slice(0,5);let i = index;">
+              <ion-label class="name">{{foods.name}}</ion-label>
+              <ion-label class="price">₹{{i+1}}{{foods.price}}</ion-label>
+            </div>
+            <div class="food-list">
+              <ion-label class="name-bold">Total</ion-label>
+              <ion-label class="price-bold">₹60.55</ion-label>
+            </div>
+          </div>
+        </ion-col>
+      </ion-row>
+    </ion-card>
+  </div>
+</ion-content>

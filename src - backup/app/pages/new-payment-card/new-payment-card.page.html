@@ -1,0 +1,76 @@
+<!--
+  Authors : initappz (Rahul Jograna)
+  Website : https://initappz.com/
+  App Name : Foodies-3 FoodDon This App Template Source code is licensed as per the
+  terms found in the Website https://initappz.com/license
+  Copyright and Good Faith Purchasers © 2023-present initappz.
+-->
+<ion-header class="ion-no-border">
+  <ion-toolbar mode="md" color="primary">
+    <ion-buttons slot="start">
+      <ion-button (click)="onBack()" color="light">
+        <ion-icon slot="icon-only" name="chevron-back-outline"></ion-icon>
+      </ion-button>
+    </ion-buttons>
+    <ion-title>Cards</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content class="ion-padding">
+  <div class="new-card-screen">
+    <ion-label class="main-title">Add New Card</ion-label>
+    <ion-card class="card-content" mode="ios">
+      <ion-row class="ion-no-padding">
+        <ion-col size="6">
+          <ion-item lines="none" class="item-input">
+            <ion-label class="lbl" position="stacked">First Name <ion-text color="danger">*</ion-text></ion-label>
+            <ion-input></ion-input>
+          </ion-item>
+        </ion-col>
+        <ion-col size="6">
+          <ion-item lines="none" class="item-input">
+            <ion-label class="lbl" position="stacked">Last Name <ion-text color="danger">*</ion-text></ion-label>
+            <ion-input></ion-input>
+          </ion-item>
+        </ion-col>
+      </ion-row>
+      <ion-item lines="none" class="item-input">
+        <ion-label class="lbl" position="stacked">Card Number <ion-text color="danger">*</ion-text></ion-label>
+        <ion-input></ion-input>
+      </ion-item>
+
+      <ion-row class="ion-no-padding">
+        <ion-col size="6">
+          <ion-item lines="none" class="item-input">
+            <ion-label class="lbl" position="stacked">Expire Date <ion-text color="danger">*</ion-text></ion-label>
+            <ion-input></ion-input>
+          </ion-item>
+        </ion-col>
+        <ion-col size="6">
+          <ion-item lines="none" class="item-input">
+            <ion-label class="lbl" position="stacked">CVV <ion-text color="danger">*</ion-text></ion-label>
+            <ion-input></ion-input>
+          </ion-item>
+        </ion-col>
+      </ion-row>
+
+      <ion-button expand="block" fill="solid" shape="round" color="primary">
+        Save Card
+      </ion-button>
+    </ion-card>
+
+    <ion-label class="main-title">Saved Card</ion-label>
+
+    <ion-radio-group name="auto" [value]="1">
+      <ion-card class="card-items" mode="ios" *ngFor="let item of [1,2,3]">
+        <ion-item lines="none">
+          <ion-label class="lbl">
+            <p class="title">John Cannery</p>
+            <p class="sub-title">Card No : 4242 **** **** 4242</p>
+          </ion-label>
+          <ion-radio [value]="item" mode="md" color="primary" slot="start"></ion-radio>
+        </ion-item>
+      </ion-card>
+    </ion-radio-group>
+  </div>
+</ion-content>

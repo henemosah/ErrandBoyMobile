@@ -1,0 +1,79 @@
+<ion-header class="ion-no-border">
+  <ion-toolbar mode="md" color="white">
+    <ion-buttons slot="start">
+      <ion-button color="primary" (click)="util.openSideMenu()">
+        <ion-icon slot="icon-only" name="menu-outline"></ion-icon>
+      </ion-button>
+    </ion-buttons>
+    <ion-title class="kuda-title">Settings</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content [fullscreen]="true">
+  <div class="profile-header">
+    <div class="avatar-wrapper">
+      <img src="assets/images/avatar.jpg" alt="Profile" />
+      <div class="edit-badge" (click)="onPage('edit-profile')">
+        <ion-icon name="camera"></ion-icon>
+      </div>
+    </div>
+    <h2 class="user-name">{{ username }}</h2>
+    <p class="user-email">{{ email }}</p>
+  </div>
+
+  <div class="settings-container">
+    <div class="kyc-banner" [ngClass]="kycCompleted ? 'verified' : 'pending'" (click)="onPage('kyc-form')">
+      <div class="banner-icon">
+        <ion-icon [name]="kycCompleted ? 'shield-checkmark' : 'alert-circle'"></ion-icon>
+      </div>
+      <div class="banner-text">
+        <h3>Identity Verification</h3>
+        <p>{{ kycCompleted ? 'Your account is fully verified' : 'Complete KYC to avoid restrictions' }}</p>
+      </div>
+      <ion-icon name="chevron-forward-outline" class="arrow"></ion-icon>
+    </div>
+
+    <div class="menu-section">
+      <h4 class="section-label">Account</h4>
+      
+      <ion-item lines="none" class="menu-item" (click)="onPage('my-address')">
+        <div class="icon-box purple"><ion-icon name="location-outline"></ion-icon></div>
+        <ion-label>My Addresses</ion-label>
+        <ion-icon slot="end" name="chevron-forward-outline" class="detail-arrow"></ion-icon>
+      </ion-item>
+
+      <ion-item lines="none" class="menu-item">
+        <div class="icon-box blue"><ion-icon name="bag-handle-outline"></ion-icon></div>
+        <ion-label>Order History</ion-label>
+        <ion-icon slot="end" name="chevron-forward-outline" class="detail-arrow"></ion-icon>
+      </ion-item>
+
+      <ion-item lines="none" class="menu-item" (click)="onPage('notifications')">
+        <div class="icon-box green"><ion-icon name="notifications-outline"></ion-icon></div>
+        <ion-label>Notifications</ion-label>
+        <ion-toggle slot="end" mode="md" [checked]="true" color="primary"></ion-toggle>
+      </ion-item>
+    </div>
+
+    <div class="menu-section">
+      <h4 class="section-label">Legal & Security</h4>
+      
+      <ion-item lines="none" class="menu-item">
+        <div class="icon-box grey"><ion-icon name="document-text-outline"></ion-icon></div>
+        <ion-label>Terms & Conditions</ion-label>
+        <ion-icon slot="end" name="chevron-forward-outline" class="detail-arrow"></ion-icon>
+      </ion-item>
+
+      <ion-item lines="none" class="menu-item logout-item">
+        <div class="icon-box red"><ion-icon name="log-out-outline"></ion-icon></div>
+        <ion-label>Logout</ion-label>
+      </ion-item>
+    </div>
+  </div>
+</ion-content>
+
+<ion-footer class="ion-no-border">
+  <ion-toolbar color="white">
+    <app-tabs [navigation]="'profile'"></app-tabs>
+  </ion-toolbar>
+</ion-footer>

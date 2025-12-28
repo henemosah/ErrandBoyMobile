@@ -1,0 +1,133 @@
+:host {
+  --kuda-purple: #40196d;
+  --bg-soft: #f9f9fb;
+}
+
+.kuda-title {
+  font-weight: 800;
+  color: var(--kuda-purple);
+  font-size: 1.2rem;
+}
+
+.header-avatar {
+  width: 32px;
+  height: 32px;
+  margin-right: 15px;
+}
+
+.errands-container {
+  background: var(--bg-soft);
+  padding: 20px;
+  min-height: 100%;
+}
+
+.section-header {
+  margin-bottom: 15px;
+  &.margin-top { margin-top: 30px; }
+  
+  .main-title {
+    font-size: 1.1rem;
+    font-weight: 800;
+    color: #333;
+  }
+}
+
+.empty-state {
+  text-align: center;
+  padding: 20px;
+  background: white;
+  border-radius: 16px;
+  img { width: 70%; margin-bottom: 10px; }
+  p { color: #888; font-weight: 500; }
+}
+
+/* ERRAND CARDS */
+.errand-card {
+  background: white;
+  border-radius: 16px;
+  padding: 16px;
+  margin-bottom: 15px;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.03);
+
+  .card-top {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 12px;
+    
+    .delivery-id {
+      font-size: 0.75rem;
+      font-weight: 700;
+      color: #999;
+      letter-spacing: 0.5px;
+    }
+
+    .status-badge {
+      background: #e3f2fd;
+      color: #2196f3;
+      padding: 4px 10px;
+      border-radius: 20px;
+      font-size: 0.7rem;
+      font-weight: 700;
+    }
+  }
+
+  .card-body {
+    display: flex;
+    align-items: flex-start;
+    margin-bottom: 15px;
+
+    .icon-box {
+      width: 50px;
+      height: 50px;
+      background: #f4f4f7;
+      border-radius: 12px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin-right: 15px;
+      img { width: 32px; height: 32px; }
+    }
+
+    .info {
+      flex: 1;
+      h3 { margin: 0; font-size: 1rem; font-weight: 700; color: #1a1a1a; }
+      .address { 
+        margin: 5px 0; 
+        font-size: 0.85rem; 
+        color: #666; 
+        display: flex; 
+        align-items: center;
+        ion-icon { margin-right: 4px; color: var(--kuda-purple); }
+      }
+      .date { font-size: 0.75rem; color: #999; }
+    }
+  }
+
+  .card-footer {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    border-top: 1px solid #f0f0f0;
+    padding-top: 12px;
+
+    .fee {
+      font-size: 1.1rem;
+      font-weight: 800;
+      color: var(--kuda-purple);
+    }
+
+    .chat-btn {
+      --color: var(--kuda-purple);
+      font-weight: 700;
+      font-size: 0.9rem;
+    }
+
+    .kuda-btn-small {
+      --background: var(--kuda-purple);
+      --border-radius: 8px;
+      font-weight: 700;
+      font-size: 0.85rem;
+      height: 36px;
+    }
+  }
+}

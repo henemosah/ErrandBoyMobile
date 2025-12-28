@@ -1,0 +1,68 @@
+<ion-header class="ion-no-border">
+  <ion-toolbar mode="md" color="white">
+    <ion-buttons slot="start">
+      <ion-back-button defaultHref="/home" text="" icon="chevron-back-outline"></ion-back-button>
+    </ion-buttons>
+    <ion-title class="kuda-title">New Errand Request</ion-title>
+    <ion-buttons slot="end">
+      <ion-avatar class="header-avatar">
+        <img src="assets/images/avatar.jpg" />
+      </ion-avatar>
+    </ion-buttons>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content [fullscreen]="true">
+  <div class="request-container">
+    
+    <div class="welcome-section">
+      <h1 class="main-title">Where to?</h1>
+      <p class="sub-title">Enter your errand details and we'll assign an errander shortly.</p>
+    </div>
+
+    <div class="location-box">
+      <div class="icon-circle">
+        <ion-icon name="navigate-outline"></ion-icon>
+      </div>
+      <div class="text">
+        <p class="label">Current Location</p>
+        <p class="val">{{ currentLocation }}</p>
+      </div>
+    </div>
+
+    <form (submit)="requestDelivery()">
+      <div class="input-group">
+        
+        <ion-item lines="none" class="custom-input">
+          <ion-label position="stacked">Delivery Address <span class="required">*</span></ion-label>
+          <ion-input [(ngModel)]="deliveryAddress" name="delivery" placeholder="e.g. 12 Adetokunbo St, Victoria Island" required></ion-input>
+        </ion-item>
+
+        <ion-item lines="none" class="custom-input">
+          <ion-label position="stacked">Errand Description <span class="required">*</span></ion-label>
+          <ion-textarea [(ngModel)]="deliveryDescription" name="description" rows="4" placeholder="Describe what you need help with..." required></ion-textarea>
+        </ion-item>
+
+        <div class="fee-display">
+          <div class="fee-text">
+            <p>Estimated Base Fee</p>
+            <h3>₦ {{ baseFee | number }}</h3>
+          </div>
+          <ion-icon name="information-circle-outline"></ion-icon>
+        </div>
+
+      </div>
+    </form>
+  </div>
+</ion-content>
+
+<ion-footer class="ion-no-border ion-padding">
+  <div class="footer-actions">
+    <ion-button fill="clear" color="medium" (click)="cancelErrand()" class="cancel-btn">
+      Cancel
+    </ion-button>
+    <ion-button expand="block" (click)="requestDelivery()" class="kuda-btn">
+      Send Errand Request
+    </ion-button>
+  </div>
+</ion-footer>

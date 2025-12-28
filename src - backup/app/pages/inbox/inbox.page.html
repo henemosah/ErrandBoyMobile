@@ -1,0 +1,170 @@
+<!--
+  Authors : initappz (Rahul Jograna)
+  Website : https://initappz.com/
+  App Name : Velle Chat This App Template Source code is licensed as per the
+  terms found in the Website https://initappz.com/license
+  Copyright and Good Faith Purchasers © 2023-present initappz.
+ -->
+<ion-header class="ion-no-border">
+  <ion-toolbar mode="md" color="primary">
+    <ion-buttons slot="start">
+      <ion-button (click)="onBack()" color="light">
+        <ion-icon slot="icon-only" name="arrow-back-outline"></ion-icon>
+      </ion-button>
+    </ion-buttons>
+    <ion-title>
+      <ion-label class="inbox-name">{{delivery.delivery_no}}</ion-label>
+      <ion-label class="inbox-status">Active Now</ion-label>
+    </ion-title>
+    <ion-buttons slot="end">
+      <!-- <ion-button (click)="onCall()" color="light">
+        <ion-icon slot="icon-only" name="call"></ion-icon>
+      </ion-button> -->
+      <a class="button icon-left ion-ios7-telephone button-calm" style="color: white;" color="light"
+        href="tel: +2349030061590"> <ion-icon slot="icon-only" name="call"></ion-icon></a>
+      <!-- <ion-button color="light">
+        <ion-icon slot="icon-only" name="videocam"></ion-icon>
+      </ion-button> -->
+      <ion-button color="light">
+        <ion-icon slot="icon-only" name="information-circle"></ion-icon>
+      </ion-button>
+    </ion-buttons>
+  </ion-toolbar>
+  <ion-segment [(ngModel)]="selectedTab">
+    <ion-segment-button value="main" style="display: flex;" class="segment-tab">
+      <br />
+      <div class="segment-content">
+        <ion-icon name="mail-outline"></ion-icon>
+        <ion-label>Errand Overview</ion-label>
+      </div>
+      <br />
+    </ion-segment-button>
+
+    <ion-segment-button value="chat" class="segment-tab">
+      <br />
+      <div class="segment-content">
+        <ion-icon name="chatbubble-ellipses-outline"></ion-icon>
+        <ion-label>Chat With Officer</ion-label>
+        <ion-badge color="secondary" *ngIf="messagesToView.length > 0">{{ messagesToView.length }}</ion-badge>
+      </div>
+      <br />
+
+    </ion-segment-button>
+  </ion-segment>
+</ion-header>
+
+<ion-content class="ion-padding">
+
+  <div class="inbox-screen">
+
+    <div *ngIf="selectedTab === 'main'">
+
+      <ion-row class="ion-padding" style="width: 100%;">
+        <table style="width: 100%;">
+          <tr>
+            <td width="15%">
+              <img [src]="delivery_img" style="height: 52px; margin-right: 10px;" />
+            </td>
+            <td width="45%">
+
+              Address: {{ delivery.dropoff }}<br><br>
+              {{ delivery.description }}<br>
+              Requested On: {{delivery.timestamp.seconds*1000 | date: 'dd/MM/yyyy'}}
+            </td>
+            <td width="40%" align="right">
+              <h2 [style]="{'color': calculateFee(delivery)==5000?'red':'black'}">Fee:<br/>₦ {{ calculateFee(delivery) | number }}<br /></h2>
+            </td>
+          </tr>
+        </table>
+      </ion-row>
+      <google-map height="100px" width="100%" style="display: none;">
+        <map-marker *ngIf="delivery"
+          [position]="{lat:parseFloat( delivery.requesterLocation?.lat), lng: parseFloat(delivery.requesterLocation?.lng)}"
+          title="Requester Location"></map-marker>
+        <!-- <map-marker *ngIf="delivery" [position]="{lat: delivery.dropoff.lat, lng: delivery.dropoff.lng}" title="Delivery Destination"></map-marker> -->
+      </google-map>
+
+      <google-map #map height="200px" width="100%" [center]="center" [zoom]="13">
+      </google-map>
+
+      <ion-card>
+        <ion-card-content>
+          Estimated : {{ estimatedTime }} -- Elapsed: {{ elapsedTime }}
+        </ion-card-content>
+      </ion-card>
+
+      <ion-card class="gradient-card gradient-blue">
+        <ion-card-header>
+          <ion-card-title style="font-size: large;">Errand Officer</ion-card-title>
+        </ion-card-header>
+        <ion-card-content style="display: flex;">
+          
+          <img src="/assets/images/avatar/13.jpg" alt="" class="img" [style]="{'height': '100px'}">
+          <div [style]="{'padding-left': '10px'}">
+            <p>{{delivery.driver_id}}</p>
+            <p>delivery.driver_id</p>
+          </div>
+        </ion-card-content>
+      </ion-card>
+    </div>
+    <div *ngIf="selectedTab !== 'main'">
+      <div class="chat-list" *ngFor="let item of messagesToView">
+        <div class="left-message" *ngIf="item.from == selectedUser">
+          <div class="sender-img" [ngStyle]="{'background-image': 'url('+cover+')'}"></div>
+          <div class="text-type" *ngIf="item.type =='text'"> <ion-label class="msg">{{item.text}}</ion-label> </div>
+          <div class="image-type" *ngIf="item.type =='image'">
+            <div *ngFor="let img of item.attachment" class="img"
+              [ngStyle]="{'background-image': 'url('+img.payload.url+')'}">
+            </div>
+          </div>
+        </div>
+        <div class="right-message" *ngIf="item.from != selectedUser">
+          <div class="text-type" *ngIf="item.type =='text'"> <ion-label class="msg">{{item.text}}</ion-label> </div>
+          <div class="image-type" *ngIf="item.type =='image'">
+            <div *ngFor="let img of item.attachment" class="img"
+              [ngStyle]="{'background-image': 'url('+img.payload.url+')'}">
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div>
+
+      <!-- <ion-row class="comment-bottom">
+      <ion-col size="9">
+        <ion-textarea [(ngModel)]="newMessage" placeholder="message ... " rows="5"></ion-textarea>
+      </ion-col>
+      <ion-col size="3">
+        <ion-button expand="block" fill="solid" shape="round" color="medium" (click)="DoSendMessage()">
+          <ion-icon slot="icon-only" name="paper-plane-outline"></ion-icon>
+        </ion-button>
+      </ion-col>
+    </ion-row> -->
+    </div>
+  </div>
+</ion-content>
+<ion-footer class="ion-no-border">
+  <ion-toolbar>
+    <div *ngIf="selectedTab === 'main'">
+      <hr />
+      <div class="bottom-chat">
+        <ion-item lines="none" class="input-content">
+          <h2 [style]="{'color': calculateFee(delivery)==5000?'red':'black'}">Total Errand Fee: ₦ {{ calculateFee(delivery) | number }}</h2>
+        </ion-item>
+      </div>
+    </div>
+    <div *ngIf="selectedTab !== 'main'">
+      <hr />
+      <div class="bottom-chat">
+        <ion-button color="light" size="small" class="extra-btn" (click)="onMoreButtons()">
+          <ion-icon slot="icon-only" name="add"></ion-icon>
+        </ion-button>
+        <ion-item lines="none" class="input-content">
+          <ion-textarea [(ngModel)]="newMessage" placeholder="message ... " rows="1"></ion-textarea>
+          <ion-icon slot="end" name="paper-plane-outline" color="primary" (click)="DoSendMessage()"></ion-icon>
+        </ion-item>
+      </div>
+    </div>
+  </ion-toolbar>
+</ion-footer>

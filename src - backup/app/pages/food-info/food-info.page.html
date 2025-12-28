@@ -1,0 +1,93 @@
+<!--
+  Authors : initappz (Rahul Jograna)
+  Website : https://initappz.com/
+  App Name : Foodies-3 FoodDon This App Template Source code is licensed as per the
+  terms found in the Website https://initappz.com/license
+  Copyright and Good Faith Purchasers © 2023-present initappz.
+-->
+<ion-header class="ion-no-border">
+  <ion-toolbar mode="md" color="primary">
+    <ion-buttons slot="start">
+      <ion-button (click)="onBack()" color="light">
+        <ion-icon slot="icon-only" name="chevron-back-outline"></ion-icon>
+      </ion-button>
+    </ion-buttons>
+    <ion-title>{{name}}</ion-title>
+    <ion-buttons slot="end">
+      <ion-button color="light">
+        <ion-icon slot="icon-only" name="heart-outline"></ion-icon>
+      </ion-button>
+      <ion-button color="light">
+        <ion-icon slot="icon-only" name="share-outline"></ion-icon>
+      </ion-button>
+    </ion-buttons>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <div class="food-details-screen">
+    <div class="cover" [ngStyle]="{'background-image': 'url('+cover+')'}"></div>
+    <div class="food-detail">
+      <div class="head">
+        <ion-label class="name">{{name}}</ion-label>
+        <div class="end" (click)="onReview()">
+          <ion-icon name="star" color="primary"></ion-icon>
+          <ion-label class="lbl">4.5</ion-label>
+        </div>
+      </div>
+      <ion-label class="offer-lbl">Classic Delight with 100% Real Mozzarella Cheese</ion-label>
+      <div class="head">
+        <ion-label class="price">₹5.99</ion-label>
+        <div class="end">
+          <ion-icon name="time-outline" color="medium"></ion-icon>
+          <ion-label class="lbl">35 Min</ion-label>
+        </div>
+      </div>
+
+      <ion-item lines="none" class="offers-item">
+        <ion-icon slot="start" name="ticket-outline" color="primary"></ion-icon>
+        <ion-label class="lbl">50% Off Up to $120 + $25 Cashback | Use Code VEGAFAST FOOD</ion-label>
+      </ion-item>
+
+      <ion-item lines="none" class="offers-item">
+        <ion-icon slot="start" name="ticket-outline" color="primary"></ion-icon>
+        <ion-label class="lbl">30% Off Up to $150 on Orders avboue $500 + Upto $75 Pat Cashback</ion-label>
+      </ion-item>
+
+
+      <ion-label class="additional-lbl">Select Size</ion-label>
+
+      <ion-radio-group name="auto" value="tesla">
+        <ion-item *ngFor="let item of util.sizes;" lines="none" class="varients">
+          <ion-label>{{item}}</ion-label>
+          <ion-radio [value]="item" slot="start" mode="md"></ion-radio>
+        </ion-item>
+      </ion-radio-group>
+
+      <ion-label class="additional-lbl">Additional Topping</ion-label>
+
+      <ion-item *ngFor="let item of util.variations;" lines="none" class="varients">
+        <ion-label>{{item}}</ion-label>
+        <ion-checkbox slot="start" mode="md"></ion-checkbox>
+      </ion-item>
+    </div>
+  </div>
+</ion-content>
+<ion-footer>
+  <ion-toolbar>
+    <ion-row class="cart-btn-food-detail">
+      <ion-col size="6">
+        <div class="quantity">
+          <ion-icon name="add-circle-outline" color="medium"></ion-icon>
+          <ion-label class="lbl">1</ion-label>
+          <ion-icon name="remove-circle-outline" color="medium"></ion-icon>
+        </div>
+      </ion-col>
+      <ion-col size="6">
+        <ion-button expand="block" fill="solid" shape="round" color="primary">
+          Add to Cart
+        </ion-button>
+      </ion-col>
+    </ion-row>
+  </ion-toolbar>
+</ion-footer>

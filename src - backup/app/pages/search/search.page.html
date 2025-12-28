@@ -1,0 +1,47 @@
+<!--
+  Authors : initappz (Rahul Jograna)
+  Website : https://initappz.com/
+  App Name : Foodies-3 FoodDon This App Template Source code is licensed as per the
+  terms found in the Website https://initappz.com/license
+  Copyright and Good Faith Purchasers © 2023-present initappz.
+-->
+<ion-header class="ion-no-border">
+  <ion-toolbar mode="md" color="primary">
+    <ion-buttons slot="start">
+      <ion-button (click)="close('close','close')" color="light">
+        <ion-icon slot="icon-only" name="chevron-back-outline"></ion-icon>
+      </ion-button>
+    </ion-buttons>
+    <ion-title>Search Food</ion-title>
+  </ion-toolbar>
+  <ion-toolbar mode="ios">
+    <ion-searchbar placeholder="Search Food" inputmode="text" type="text" mode="ios"></ion-searchbar>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content class="ion-padding">
+  <div class="search-screen">
+    <ion-label class="main-title">Popular Keywords</ion-label>
+    <div class="popular">
+      <ion-label class="title">Wok and Fresh Mex ....</ion-label>
+      <ion-label class="sub-title">Lunch, Tocos, Mexican</ion-label>
+    </div>
+    <div class="popular">
+      <ion-label class="title">Church's Spicy Chicken ...</ion-label>
+      <ion-label class="sub-title">Lunch, FashFood, Mexican</ion-label>
+    </div>
+
+    <div class="break"> </div>
+
+    <ion-item lines="none" class="product-info" *ngFor="let item of foods.slice(0,5);let i = index;">
+      <ion-thumbnail slot="start">
+        <img [src]="item.image" />
+      </ion-thumbnail>
+      <ion-label class="lbl">
+        <p class="title"> {{item.name}} </p>
+        <p class="price">₹{{i+1}}{{item.price}}</p>
+      </ion-label>
+      <ion-icon slot="end" name="cart-outline" color="primary" (click)="close('navigate',i.toString())"></ion-icon>
+    </ion-item>
+  </div>
+</ion-content>

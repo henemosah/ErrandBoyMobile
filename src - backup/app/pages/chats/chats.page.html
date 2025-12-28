@@ -1,0 +1,260 @@
+<!--
+  Authors : initappz (Rahul Jograna)
+  Website : https://initappz.com/
+  App Name : Velle Chat This App Template Source code is licensed as per the
+  terms found in the Website https://initappz.com/license
+  Copyright and Good Faith Purchasers © 2023-present initappz.
+ -->
+<ion-header mode="md" class="ion-no-border">
+  <ion-toolbar color="primary" mode="md">
+    <ion-title>All Chats</ion-title>
+    <ion-buttons slot="end">
+      <ion-button color="light">
+        <ion-icon slot="icon-only" name="person-add"></ion-icon>
+      </ion-button>
+      <ion-button color="light">
+        <ion-icon slot="icon-only" name="search"></ion-icon>
+      </ion-button>
+    </ion-buttons>
+  </ion-toolbar>
+  <ion-toolbar color="primary" mode="md">
+    <ion-segment [(ngModel)]="currentItem" mode="md" (ionChange)="segmentChanged($event)">
+      <ion-segment-button value="chat">
+        <ion-label>Message•</ion-label>
+      </ion-segment-button>
+      <ion-segment-button value="group">
+        <ion-label>Group</ion-label>
+      </ion-segment-button>
+      <ion-segment-button value="calls">
+        <ion-label>Calls</ion-label>
+      </ion-segment-button>
+    </ion-segment>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <div class="chat-screen">
+    <swiper-container #swiper slides-per-view="1" (slidechange)="slideChanged($event)">
+      <swiper-slide>
+        <div class="chat-content">
+          <div class="no-data" *ngIf="chatChanged == false" style="padding: 10px;">
+            <div class="image" [ngStyle]="{'background-image': 'url(assets/images/chats/chat-1.png)'}"></div>
+            <ion-label class="title">No Conversation</ion-label>
+            <ion-label class="sub-title">You didn't made any conversation yet, <br> please select username. </ion-label>
+            <ion-button expand="block" fill="clear" shape="round" color="tertiary" (click)="onChatChanged()">
+              Chat People
+            </ion-button>
+          </div>
+
+          <div class="chat-loader" *ngIf="chatLoader == true" style="padding: 10px;">
+            <div class="stories-loader">
+              <div class="stores" *ngFor="let item of util.userList">
+                <ion-avatar slot="start">
+                  <ion-skeleton-text [animated]="true"></ion-skeleton-text>
+                </ion-avatar>
+                <ion-skeleton-text [animated]="true" style="width: 80%;margin: 10px 0px;"></ion-skeleton-text>
+              </div>
+            </div>
+
+            <div class="inline-loader">
+              <ion-item lines="none" *ngFor="let item of util.userList">
+                <ion-avatar slot="start">
+                  <ion-skeleton-text [animated]="true"></ion-skeleton-text>
+                </ion-avatar>
+                <ion-label>
+                  <h3>
+                    <ion-skeleton-text [animated]="true" style="width: 50%;"></ion-skeleton-text>
+                  </h3>
+                  <p>
+                    <ion-skeleton-text [animated]="true" style="width: 80%;"></ion-skeleton-text>
+                  </p>
+                </ion-label>
+              </ion-item>
+            </div>
+          </div>
+
+          <div class="real-chat" *ngIf="chatDisplay == true" style="padding: 10px;">
+            <div class="stories-chat-list">
+              <swiper-container slides-per-view="5.2">
+                <swiper-slide>
+                  <div class="new-story">
+                    <div class="circle">
+                      <ion-icon slot="start" name="add"></ion-icon>
+                    </div>
+                    <ion-label class="title">Your Story</ion-label>
+                  </div>
+                </swiper-slide>
+
+                <swiper-slide *ngFor="let item of util.userList;let i = index;">
+                  <div class="avtar-list">
+                    <div class="avatar" [ngStyle]="{'background-image': 'url('+item.image+')'}">
+                      <div class="live" *ngIf="i == 0"> <ion-label class="live-lbl">Live</ion-label> </div>
+                      <div *ngIf="i != 0" [ngClass]="i % 2==0 ?'online-circle':'offline-circle'"></div>
+                    </div>
+                    <ion-label class="title">{{item.name.split(' ')[0]}}</ion-label>
+                  </div>
+                </swiper-slide>
+              </swiper-container>
+            </div>
+            <div class="real-chat-list">
+              <div class="chat-item-list" (click)="onInbox(i,'chat')" *ngFor="let item of util.userList;let i = index;">
+                <div class="first">
+                  <div class="avatar" [ngStyle]="{'background-image': 'url('+item.image+')'}">
+                    <div [ngClass]="i % 2==0 ?'online-circle':'offline-circle'"></div>
+                  </div>
+                  <div class="name-content">
+                    <ion-label class="name">{{item.name}}</ion-label>
+                    <ion-label class="last-message">You can change every details</ion-label>
+                  </div>
+                </div>
+                <div class="last">
+                  <ion-label class="time-bold" *ngIf="i % 2==0">{{i+1}}m ago</ion-label>
+                  <ion-label class="time" *ngIf="i % 2 !=0"> {{i+1}}m ago</ion-label>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </swiper-slide>
+
+      <swiper-slide>
+        <div class="group-content">
+          <div class="no-data" *ngIf="groupChanged == false;">
+            <div class="image" [ngStyle]="{'background-image': 'url(assets/images/chats/chat-3.png)'}"></div>
+            <ion-label class="title">No Group Chat</ion-label>
+            <ion-label class="sub-title">You didn't made any conversation yet, <br> please select username. </ion-label>
+            <ion-button expand="block" fill="clear" shape="round" color="tertiary" (click)="onGroupChanged()">
+              Create Group
+            </ion-button>
+          </div>
+
+          <div class="group-loader" *ngIf="groupLoader == true">
+            <ion-row class="loader">
+              <ion-col size="6" *ngFor="let item of util.userList">
+                <div class="content">
+                  <div class="head">
+                    <ion-icon name="star" color="medium"></ion-icon>
+                    <ion-icon name="ellipsis-vertical" color="medium"></ion-icon>
+                  </div>
+                  <ion-avatar slot="start">
+                    <ion-skeleton-text [animated]="true"></ion-skeleton-text>
+                  </ion-avatar>
+                  <ion-skeleton-text [animated]="true" style="width: 80%;margin: 10px 0px;"></ion-skeleton-text>
+                  <div class="avtar-list">
+                    <ion-avatar slot="start">
+                      <ion-skeleton-text [animated]="true"></ion-skeleton-text>
+                    </ion-avatar>
+                    <ion-avatar slot="start">
+                      <ion-skeleton-text [animated]="true"></ion-skeleton-text>
+                    </ion-avatar>
+                    <ion-avatar slot="start">
+                      <ion-skeleton-text [animated]="true"></ion-skeleton-text>
+                    </ion-avatar>
+                    <ion-avatar slot="start">
+                      <ion-skeleton-text [animated]="true"></ion-skeleton-text>
+                    </ion-avatar>
+                  </div>
+                </div>
+              </ion-col>
+            </ion-row>
+          </div>
+
+          <div class="real-group-list" *ngIf="groupDisplay == true">
+            <ion-row class="group-list-item">
+              <ion-col size="6">
+                <div class="new-group-button">
+                  <div class="circle">
+                    <ion-icon slot="start" name="add"></ion-icon>
+                  </div>
+                  <ion-label class="group-name">Create New</ion-label>
+                </div>
+              </ion-col>
+              <ion-col size="6" *ngFor="let item of util.userList;let i = index;" (click)="onInbox(i,'group')">
+                <div class="group-item-content">
+                  <div class="head">
+                    <ion-icon name="star" [color]="i % 2==0 ? 'medium':'warning'"></ion-icon>
+                    <ion-icon name="ellipsis-vertical" color="medium"></ion-icon>
+                  </div>
+                  <div class="avatar" [ngStyle]="{'background-image': 'url('+item.image+')'}">
+                    <div class="live" *ngIf="i == 0"> <ion-label class="live-lbl">Live</ion-label> </div>
+                    <div *ngIf="i != 0" [ngClass]="i % 2==0 ?'online-circle':'offline-circle'"></div>
+                  </div>
+                  <ion-label class="group-name">{{item.name}}</ion-label>
+                  <div class="avtar-list">
+                    <img [src]="item.image" alt="" class="img-name" *ngFor="let item of util.userList.slice(0,4)">
+                  </div>
+                </div>
+              </ion-col>
+            </ion-row>
+          </div>
+        </div>
+      </swiper-slide>
+
+      <swiper-slide>
+        <div class="call-content">
+          <div class="no-data" *ngIf="callChanged == false">
+            <div class="image" [ngStyle]="{'background-image': 'url(assets/images/chats/chat-2.png)'}"></div>
+            <ion-label class="title">No Phone Call</ion-label>
+            <ion-label class="sub-title">You didn't made any conversation yet, <br> please select username. </ion-label>
+            <ion-button expand="block" fill="clear" shape="round" color="tertiary" (click)="onCallChanged()">
+              Make Phone Call
+            </ion-button>
+          </div>
+
+          <div class="chat-loader" *ngIf="callLoader == true">
+
+            <div class="inline-loader">
+              <ion-item lines="none" *ngFor="let item of util.userList">
+                <ion-avatar slot="start">
+                  <ion-skeleton-text [animated]="true"></ion-skeleton-text>
+                </ion-avatar>
+                <ion-label>
+                  <h3>
+                    <ion-skeleton-text [animated]="true" style="width: 50%;"></ion-skeleton-text>
+                  </h3>
+                  <p>
+                    <ion-skeleton-text [animated]="true" style="width: 80%;"></ion-skeleton-text>
+                  </p>
+                </ion-label>
+
+                <ion-avatar slot="end" class="small">
+                  <ion-skeleton-text [animated]="true"></ion-skeleton-text>
+                </ion-avatar>
+                <ion-avatar slot="end" class="small">
+                  <ion-skeleton-text [animated]="true"></ion-skeleton-text>
+                </ion-avatar>
+              </ion-item>
+            </div>
+          </div>
+
+          <div class="real-call-list" *ngIf="callDisplay == true">
+            <div class="call-item-list" *ngFor="let item of util.userList;let i = index;" (click)="onInbox(i,'chat')">
+              <div class="first">
+                <div class="avatar" [ngStyle]="{'background-image': 'url('+item.image+')'}">
+                  <div [ngClass]="i % 2==0 ?'online-circle':'offline-circle'"></div>
+                </div>
+                <div class="name-content">
+                  <ion-label class="name">{{item.name}}</ion-label>
+                  <ion-label class="last-message-red" *ngIf="i % 2==0"> <ion-icon name="arrow-undo-outline"></ion-icon>
+                    You missed 3 voice call</ion-label>
+                  <ion-label class="last-message-gray" *ngIf="i % 2 !=0"> <ion-icon
+                      name="arrow-redo-outline"></ion-icon>
+                    Last called 5m ago</ion-label>
+                </div>
+              </div>
+              <div class="last">
+                <ion-button size="small" fill="clear">
+                  <ion-icon slot="icon-only" name="videocam" color="success"></ion-icon>
+                </ion-button>
+                <ion-button size="small" fill="clear">
+                  <ion-icon slot="icon-only" name="call" color="tertiary"></ion-icon>
+                </ion-button>
+              </div>
+            </div>
+          </div>
+        </div>
+      </swiper-slide>
+    </swiper-container>
+
+  </div>
+</ion-content>

@@ -1,0 +1,96 @@
+<!--
+  Authors : initappz (Rahul Jograna)
+  Website : https://initappz.com/
+  App Name : Foodies-3 FoodDon This App Template Source code is licensed as per the
+  terms found in the Website https://initappz.com/license
+  Copyright and Good Faith Purchasers © 2023-present initappz.
+-->
+<ion-header class="ion-no-border">
+  <ion-toolbar mode="md" color="primary">
+    <ion-buttons slot="start">
+      <ion-button (click)="onBack()" color="light">
+        <ion-icon slot="icon-only" name="chevron-back-outline"></ion-icon>
+      </ion-button>
+    </ion-buttons>
+    <ion-title>Payments</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content class="ion-padding">
+  <div class="payment-screen">
+    <ion-card mode="ios" class="price-content">
+      <div class="flex-div">
+        <ion-label class="lbl-bold">Items Total</ion-label>
+      </div>
+      <div class="flex-div">
+        <ion-label class="lbl">Delivery Charge</ion-label>
+        <ion-label class="price">₹10.99</ion-label>
+      </div>
+      <div class="flex-div">
+        <ion-label class="lbl">Discount</ion-label>
+        <ion-label class="price-color">-₹8.23</ion-label>
+      </div>
+      <div class="flex-div">
+        <ion-label class="lbl">Tax & Charge</ion-label>
+        <ion-label class="price">₹13.99</ion-label>
+      </div>
+      <div class="break"></div>
+      <div class="flex-div">
+        <ion-label class="lbl-bold">Grand Total</ion-label>
+        <ion-label class="price-color-bold">₹288.23</ion-label>
+      </div>
+    </ion-card>
+
+    <ion-card class="delivery-option" mode="ios">
+      <div class="head">
+        <ion-label class="title">Delivery Address</ion-label>
+        <ion-label class="change" (click)="chooseAddress()">Change</ion-label>
+      </div>
+      <ion-label class="main-title">John Cannery</ion-label>
+      <ion-label class="lbl">johncannery@email.com</ion-label>
+      <ion-label class="lbl">(+91) 963 - 654 - 9874</ion-label>
+      <ion-label class="lbl">1007 Heritage Road Fresno <br>CA 93721 </ion-label>
+    </ion-card>
+
+    <ion-card class="delivery-option" mode="ios">
+      <div class="head">
+        <ion-label class="title">Payment Method</ion-label>
+        <ion-label class="change" (click)="choosePayment()">Change</ion-label>
+      </div>
+      <ion-label class="main-title">John Cannery</ion-label>
+      <ion-label class="lbl">johncannery@email.com</ion-label>
+      <ion-label class="lbl">Card No : 4242 **** **** 4242</ion-label>
+      <ion-label class="lbl">Exp. Date 07/08/2033</ion-label>
+    </ion-card>
+
+    <ion-radio-group name="auto" value="tesla">
+      <ion-card class="payment-method">
+        <ion-item lines="none" class="payment-content">
+          <ion-label class="lbl">Debit Card</ion-label>
+          <ion-radio value="tesla" mode="md" slot="start" color="primary"></ion-radio>
+        </ion-item>
+      </ion-card>
+
+      <ion-card class="payment-method">
+        <ion-item lines="none" class="payment-content">
+          <ion-label class="lbl">Net Banking</ion-label>
+          <ion-radio value="net" mode="md" slot="start" color="primary"></ion-radio>
+        </ion-item>
+      </ion-card>
+
+      <ion-card class="payment-method">
+        <ion-item lines="none" class="payment-content">
+          <ion-label class="lbl">Cash On Delivery</ion-label>
+          <ion-radio value="cash" mode="md" slot="start" color="primary"></ion-radio>
+        </ion-item>
+      </ion-card>
+    </ion-radio-group>
+  </div>
+</ion-content>
+<ion-footer>
+  <ion-toolbar>
+    <ion-button expand="block" fill="solid" shape="round" color="primary" (click)="onLocation()">
+      Proceed to Pay
+    </ion-button>
+  </ion-toolbar>
+</ion-footer>

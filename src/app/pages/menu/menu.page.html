@@ -1,0 +1,65 @@
+<ion-header class="ion-no-border">
+  <ion-toolbar mode="md" color="white">
+    <ion-buttons slot="start">
+      <ion-button color="primary" (click)="util.openSideMenu()">
+        <ion-icon slot="icon-only" name="menu-outline"></ion-icon>
+      </ion-button>
+    </ion-buttons>
+    <ion-title class="kuda-title">Categories</ion-title>
+    <ion-buttons slot="end">
+      <ion-avatar class="header-avatar">
+        <img src="assets/images/avatar.jpg" />
+      </ion-avatar>
+    </ion-buttons>
+  </ion-toolbar>
+
+  <ion-toolbar mode="md" color="white" class="ion-padding-horizontal">
+    <div class="search-container" (click)="openSearchModal()">
+      <ion-icon name="search-outline"></ion-icon>
+      <span>Search Errand Categories</span>
+      <ion-icon name="options-outline" slot="end" (click)="presentModal(); $event.stopPropagation()"></ion-icon>
+    </div>
+  </ion-toolbar>
+
+  <ion-toolbar mode="md" color="white">
+    <ion-segment [(ngModel)]="name" (ionChange)="segmentChanged()" mode="md" [scrollable]="true" class="kuda-segment">
+      <ion-segment-button [value]="item.service" *ngFor="let item of util.services;">
+        <ion-label>{{item.service}}</ion-label>
+      </ion-segment-button>
+    </ion-segment>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content [fullscreen]="true">
+  <div class="categories-container">
+    <ion-row class="ion-no-padding">
+      <ion-col size="6" *ngFor="let item of foods; let i = index;" (click)="onFoodInfo(item.name, item.image)">
+        <div class="category-card">
+          <div class="icon-wrapper">
+            <img [src]="item.category_image" alt="category icon"/>
+          </div>
+
+          <div class="info-wrapper">
+            <h3 class="category-name">{{item.service}}</h3>
+            
+            <div class="meta-row">
+              <span class="price-tag">NGN {{item.total_rate}}</span>
+              <div class="rating">
+                <ion-icon name="star"></ion-icon>
+                <span>{{item.rate}}</span>
+              </div>
+            </div>
+            
+            <p class="sub-label">{{item.name}}</p>
+          </div>
+        </div>
+      </ion-col>
+    </ion-row>
+  </div>
+</ion-content>
+
+<ion-footer class="ion-no-border">
+  <ion-toolbar color="white">
+    <app-tabs [navigation]="'menu'"></app-tabs>
+  </ion-toolbar>
+</ion-footer>

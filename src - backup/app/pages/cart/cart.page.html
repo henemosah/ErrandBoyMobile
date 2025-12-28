@@ -1,0 +1,95 @@
+<!--
+  Authors : initappz (Rahul Jograna)
+  Website : https://initappz.com/
+  App Name : Foodies-3 FoodDon This App Template Source code is licensed as per the
+  terms found in the Website https://initappz.com/license
+  Copyright and Good Faith Purchasers © 2023-present initappz.
+-->
+<ion-header class="ion-no-border">
+  <ion-toolbar mode="md" color="primary">
+    <ion-buttons slot="start">
+      <ion-button color="light" (click)="util.openSideMenu()">
+        <ion-icon slot="icon-only" name="menu"></ion-icon>
+      </ion-button>
+    </ion-buttons>
+    <ion-title>My Current Order</ion-title>
+    <ion-buttons slot="end">
+      <ion-avatar slot="end">
+        <img src="assets/images/avatar.jpg" />
+      </ion-avatar>
+    </ion-buttons>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content class="ion-padding">
+  <div class="cart-screen">
+    <ion-card mode="ios" class="item-cart" *ngFor="let item of foods.slice(0,3);let i = index;">
+      <ion-row class="food-info">
+        <ion-col size="3">
+          <div class="cover" [ngStyle]="{'background-image': 'url('+item.image+')'}"></div>
+        </ion-col>
+        <ion-col size="7">
+          <div class="name-content">
+            <ion-label class="title">{{item.name}}</ion-label>
+            <ion-label class="type">American • Italian</ion-label>
+            <ion-label class="price">₹{{i+1}}{{item.price}}</ion-label>
+          </div>
+        </ion-col>
+        <ion-col size="2">
+          <div class="quantity">
+            <ion-icon name="add-circle-outline" color="medium"></ion-icon>
+            <ion-label class="lbl">{{i+1}}</ion-label>
+            <ion-icon name="remove-circle-outline" color="medium"></ion-icon>
+          </div>
+        </ion-col>
+      </ion-row>
+    </ion-card>
+
+    <ion-row class="coupon-code">
+      <ion-col size="8">
+        <ion-item lines="none" class="item-content">
+          <ion-input placeholder="ATG00932"></ion-input>
+        </ion-item>
+      </ion-col>
+      <ion-col size="4">
+        <ion-button expand="block" fill="solid" shape="round" color="primary">
+          Apply
+        </ion-button>
+      </ion-col>
+    </ion-row>
+
+    <ion-card mode="ios" class="price-content">
+      <div class="flex-div">
+        <ion-label class="lbl-bold">Items Total</ion-label>
+      </div>
+      <div class="flex-div">
+        <ion-label class="lbl">Delivery Charge</ion-label>
+        <ion-label class="price">₹10.99</ion-label>
+      </div>
+      <div class="flex-div">
+        <ion-label class="lbl">Discount</ion-label>
+        <ion-label class="price-color">-₹8.23</ion-label>
+      </div>
+      <div class="flex-div">
+        <ion-label class="lbl">Tax & Charge</ion-label>
+        <ion-label class="price">₹13.99</ion-label>
+      </div>
+      <div class="break"></div>
+      <div class="flex-div">
+        <ion-label class="lbl-bold">Grand Total</ion-label>
+        <ion-label class="price-color-bold">₹288.23</ion-label>
+      </div>
+    </ion-card>
+  </div>
+</ion-content>
+
+<ion-footer>
+  <ion-toolbar>
+    <ion-button expand="block" fill="solid" shape="round" color="primary" (click)="onPayment()">
+      Checkout
+    </ion-button>
+  </ion-toolbar>
+  <ion-toolbar>
+    <app-tabs [navigation]="'cart'"></app-tabs>
+  </ion-toolbar>
+</ion-footer>

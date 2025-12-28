@@ -1,0 +1,75 @@
+<ion-app>
+  <ion-split-pane disabled="true" contentId="main-content">
+    <ion-menu contentId="main-content" type="overlay">
+      <ion-content class="menu-wrapper">
+
+        <!-- Profile Section -->
+        <div class="menu-header">
+          <div class="menu-header-overlay">
+            <ion-avatar>
+              <img src="assets/images/avatar/2.jpg" alt="User Avatar" />
+            </ion-avatar>
+            <div class="menu-user">
+              <h3>{{ username }}</h3>
+              <p>{{ email }} <br/>{{ userType }} <br/></p>
+            </div>
+          </div>
+        </div>
+
+        <!-- 🔹 Statistics Summary Section -->
+        <div class="menu-stats">
+          <h4>Today’s Overview</h4><br/>
+          <div *ngIf="userType=='client'">
+            <div class="stats-row">
+              <div class="stat-card">
+                <h5>{{ totalDeliveries }}</h5>
+                <p>Total Errands</p>
+              </div>
+              <div class="stat-card">
+                <h5>{{ activeDeliveries }}</h5>
+                <p>Active</p>
+              </div>
+            </div>
+          </div>
+          <div *ngIf="userType=='officer'">
+            <div class="stats-row">
+              <div class="stat-card">
+                <h5>{{ completedDeliveries }}</h5>
+                <p>Completed</p>
+              </div>
+              <div class="stat-card">
+                <h5>{{ availableDeliveries }}</h5>
+                <p>Available</p>
+              </div>
+            </div>
+          </div>
+          <br/>
+          <!-- Optional mini bar chart -->
+          <div class="mini-graph" *ngIf="userType=='officer'">
+            <div *ngFor="let val of statsGraph" [style.height.%]="val" class="bar"></div>
+          </div>
+        </div>
+
+        <!-- Navigation Links -->
+        <ion-list lines="none" class="menu-list">
+          <ion-menu-toggle auto-hide="false" *ngFor="let page of filteredPages" (click)="onPage(page.route)">
+            <ion-item button detail="false" [class.active]="activePage === page.route">
+              <ion-icon slot="start" [name]="page.icon"></ion-icon>
+              <ion-label>{{ page.title }}</ion-label>
+            </ion-item>
+          </ion-menu-toggle>
+        </ion-list>
+
+        <!-- Logout -->
+        <div class="logout-container">
+          <ion-button expand="block" fill="solid" color="light" (click)="logout()">
+            <ion-icon name="log-out-outline" slot="start"></ion-icon>
+            Logout
+          </ion-button>
+        </div>
+      </ion-content>
+    </ion-menu>
+
+    <ion-router-outlet id="main-content"></ion-router-outlet>
+  </ion-split-pane>
+</ion-app>

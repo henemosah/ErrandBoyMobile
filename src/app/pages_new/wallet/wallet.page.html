@@ -1,0 +1,18 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-title>Wallet</ion-title>
+  </ion-toolbar>
+</ion-header>
+<ion-content>
+  <ion-card>
+    <ion-card-header>
+      <ion-card-title>Wallet Balance: {{ balance | currency }}</ion-card-title>
+    </ion-card-header>
+    <ion-card-content>
+      <ion-item>
+        <ion-input [(ngModel)]="topUpAmount" type="number" placeholder="Enter amount to top-up"></ion-input>
+      </ion-item>
+      <ion-button expand="full" (click)="topUpWallet()">Top-Up Wallet</ion-button>
+    </ion-card-content>
+  </ion-card>
+</ion-content>

@@ -1,0 +1,35 @@
+<!--
+  Authors : initappz (Rahul Jograna)
+  Website : https://initappz.com/
+  App Name : Foodies-3 FoodDon This App Template Source code is licensed as per the
+  terms found in the Website https://initappz.com/license
+  Copyright and Good Faith Purchasers © 2023-present initappz.
+-->
+<ion-header class="ion-no-border">
+  <ion-toolbar mode="md" color="primary">
+    <ion-buttons slot="start">
+      <ion-button (click)="onBack()" color="light">
+        <ion-icon slot="icon-only" name="chevron-back-outline"></ion-icon>
+      </ion-button>
+    </ion-buttons>
+    <ion-title>Confirm Location</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <div class="location-map-screen">
+    <div #map id="map" class="map"></div>
+    <ion-card mode="ios" class="card-content">
+      <ion-label class="title">Your Location</ion-label>
+      <ion-label class="sub-title">1007 Heritage Road Fresno CA 93721</ion-label>
+      <div class="break"></div>
+      <ion-button expand="block" fill="solid" shape="round" color="primary" (click)="onSuccess()">
+        Confirm Location
+      </ion-button>
+      <ion-button expand="block" fill="clear" shape="round" color="medium" (click)="onSuccess()">
+        <ion-icon slot="start" name="compass-outline"></ion-icon>
+        Use Current Location
+      </ion-button>
+    </ion-card>
+  </div>
+</ion-content>

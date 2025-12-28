@@ -1,0 +1,30 @@
+
+.home-screen .cate-info .circle {
+    height: 50px;
+    width: 50px;
+    border-radius: 50%;
+    background-color: #ffffff;
+  }
+
+  
+  .main-title {
+    margin: 10px 0px;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+
+    .title {
+      font-size: 14px;
+      font-family: 'bold';
+      color: var(--ion-color-dark);
+      text-align: start;
+    }
+
+    .btn {
+      font-size: 12px;
+      font-family: 'semi-bold';
+      color: var(--ion-color-medium);
+      text-align: end;
+    }
+  }

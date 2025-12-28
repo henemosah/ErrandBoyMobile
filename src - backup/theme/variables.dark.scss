@@ -1,0 +1,64 @@
+:root {
+  /** primary **/
+  --ion-color-primary: #4C9AFF; /* softer, glowing blue */
+  --ion-color-primary-rgb: 76, 154, 255;
+  --ion-color-primary-contrast: #ffffff;
+  --ion-color-primary-shade: #3f84db;
+  --ion-color-primary-tint: #66aaff;
+
+  /** secondary **/
+  --ion-color-secondary: #2D2F3E; /* elevated card/bg */
+  --ion-color-secondary-rgb: 45, 47, 62;
+  --ion-color-secondary-contrast: #ffffff;
+  --ion-color-secondary-shade: #262836;
+  --ion-color-secondary-tint: #444657;
+
+  /** tertiary **/
+  --ion-color-tertiary: #00E5FF; /* bright cyan pop */
+  --ion-color-tertiary-rgb: 0, 229, 255;
+  --ion-color-tertiary-contrast: #000000;
+  --ion-color-tertiary-shade: #00c9e0;
+  --ion-color-tertiary-tint: #1ae8ff;
+
+  /** success **/
+  --ion-color-success: #34D399; /* neon green */
+  --ion-color-success-rgb: 52, 211, 153;
+  --ion-color-success-contrast: #000000;
+  --ion-color-success-shade: #2db98a;
+  --ion-color-success-tint: #4ed8a7;
+
+  /** warning **/
+  --ion-color-warning: #FACC15; /* bright amber */
+  --ion-color-warning-rgb: 250, 204, 21;
+  --ion-color-warning-contrast: #000000;
+  --ion-color-warning-shade: #d9b213;
+  --ion-color-warning-tint: #fbd233;
+
+  /** danger **/
+  --ion-color-danger: #F87171; /* glowing red */
+  --ion-color-danger-rgb: 248, 113, 113;
+  --ion-color-danger-contrast: #000000;
+  --ion-color-danger-shade: #da6363;
+  --ion-color-danger-tint: #f98585;
+
+  /** dark **/
+  --ion-color-dark: #0D1117; /* true dark background */
+  --ion-color-dark-rgb: 13, 17, 23;
+  --ion-color-dark-contrast: #ffffff;
+  --ion-color-dark-shade: #0b0f14;
+  --ion-color-dark-tint: #262a30;
+
+  /** medium **/
+  --ion-color-medium: #9CA3AF; /* muted gray for icons/text */
+  --ion-color-medium-rgb: 156, 163, 175;
+  --ion-color-medium-contrast: #000000;
+  --ion-color-medium-shade: #888e99;
+  --ion-color-medium-tint: #a6acb6;
+
+  /** light **/
+  --ion-color-light: #1F2937; /* dark card surfaces */
+  --ion-color-light-rgb: 31, 41, 55;
+  --ion-color-light-contrast: #ffffff;
+  --ion-color-light-shade: #1a2330;
+  --ion-color-light-tint: #364150;
+}

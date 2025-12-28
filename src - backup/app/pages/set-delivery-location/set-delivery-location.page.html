@@ -1,0 +1,50 @@
+<!--
+  Authors : initappz (Rahul Jograna)
+  Website : https://initappz.com/
+  App Name : Foodies-3 FoodDon This App Template Source code is licensed as per the
+  terms found in the Website https://initappz.com/license
+  Copyright and Good Faith Purchasers © 2023-present initappz.
+-->
+<ion-header class="ion-no-border">
+  <ion-toolbar mode="md" color="primary">
+    <ion-buttons slot="start">
+      <ion-button (click)="onBack()" color="light">
+        <ion-icon slot="icon-only" name="chevron-back-outline"></ion-icon>
+      </ion-button>
+    </ion-buttons>
+    <ion-title>Set Delivery Location</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content class="ion-padding">
+  <div class="delivery-address-screen">
+    <ion-label class="main-title">Saved Address</ion-label>
+    <ion-radio-group name="auto" [value]="1">
+      <ion-card class="saved-address" mode="ios" *ngFor="let item of [1,2,3]">
+        <ion-item lines="none">
+          <ion-label class="lbl">
+            <p class="title">John Cannery</p>
+            <p class="sub-title">1007 Heritage Road Fresno CA 93721</p>
+          </ion-label>
+          <ion-radio [value]="item" mode="md" color="primary" slot="start"></ion-radio>
+        </ion-item>
+      </ion-card>
+    </ion-radio-group>
+
+    <ion-button expand="block" fill="solid" shape="round" color="primary" (click)="addNewAddress()">
+      Add New Address
+    </ion-button>
+
+    <ion-label class="main-title">Current Location</ion-label>
+
+    <ion-card mode="ios" class="current-location">
+      <ion-label class="title">Search for Area, Street Name</ion-label>
+      <div class="break"></div>
+      <ion-label class="or"> Or </ion-label>
+      <ion-button expand="block" fill="clear" shape="round" color="medium">
+        <ion-icon slot="start" name="compass-outline"></ion-icon>
+        Use Current Location
+      </ion-button>
+    </ion-card>
+  </div>
+</ion-content>

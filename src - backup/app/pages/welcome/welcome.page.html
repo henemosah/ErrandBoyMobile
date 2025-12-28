@@ -1,0 +1,39 @@
+<!--
+  Authors : initappz (Rahul Jograna)
+  Website : https://initappz.com/
+  App Name : Foodies-3 FoodDon This App Template Source code is licensed as per the
+  terms found in the Website https://initappz.com/license
+  Copyright and Good Faith Purchasers © 2023-present initappz.
+-->
+<ion-content class="ion-padding">
+  <div class="welcome-screen">
+    <swiper-container #swiper (slidechange)="changed()">
+      <swiper-slide>
+        <div class="data-content">
+          <img src="assets/images/sliders/1.png" alt="" class="img">
+          <ion-label class="title">Delivering Errands to your doorstep </ion-label>
+          <ion-label class="sub-title">Create your account: To use Errand Boy, you'll need to create an account. This
+            will allow you to save your favorite service providers, as well as view your order history.</ion-label>
+        </div>
+      </swiper-slide>
+
+      <swiper-slide>
+        <div class="data-content">
+          <img src="assets/images/sliders/2.png" alt="" class="img">
+          <ion-label class="title">Delivery that's fast, friendly, and convenient </ion-label>
+          <ion-label class="sub-title">Once you find a service you like, you can reach out to the service provider and
+            request for a service.</ion-label>
+        </div>
+      </swiper-slide>
+
+    </swiper-container>
+    <div class="bottom-btn">
+      <div class="progress">
+        <div [ngClass]="activeIndex == item ? 'active-dots':'dots'" *ngFor="let item of [0,1]"></div>
+      </div>
+      <ion-button expand="block" fill="solid" shape="round" color="primary" *ngIf="isEnd == true" (click)="onAuth()">
+        Get Started
+      </ion-button>
+    </div>
+  </div>
+</ion-content>
